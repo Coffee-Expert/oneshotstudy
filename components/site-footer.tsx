@@ -9,19 +9,14 @@ import { Mail, Phone } from "lucide-react"
 export function SiteFooter() {
   return (
     <footer className="border-t border-slate-200 bg-white relative overflow-hidden">
-      {/* Large background text for visual appeal */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <h2 className="text-8xl md:text-9xl lg:text-[12rem] font-black text-slate-100 select-none opacity-20">
-          YOUR STUDY HELP
-        </h2>
-      </div>
+      
 
       <div className="container relative z-10 flex flex-col gap-8 py-8 md:py-12">
         {/* Footer content organized in responsive grid */}
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
           {/* Brand and social links section */}
           <div className="flex flex-col gap-2">
-            <h3 className="text-lg font-medium text-slate-800">One Shot Engineer</h3>
+            <h3 className="text-lg font-medium text-slate-800">One Shot Study</h3>
             <p className="text-sm text-slate-600">Your comprehensive study resource for B.Tech students.</p>
 
             {/* Social media links */}
@@ -35,10 +30,10 @@ export function SiteFooter() {
                 </div>
                 <span className="sr-only">YouTube</span>
               </Link>
-              <Link href="https://chat.whatsapp.com/invite/engineering-community" target="_blank" rel="noreferrer">
+              {/* <Link href="https://chat.whatsapp.com/invite/engineering-community" target="_blank" rel="noreferrer">
                 <Phone className="h-5 w-5 text-slate-500 hover:text-slate-700 transition-colors" />
                 <span className="sr-only">WhatsApp</span>
-              </Link>
+              </Link> */}
             </div>
           </div>
 
@@ -111,11 +106,11 @@ export function SiteFooter() {
             <h3 className="text-lg font-medium text-slate-800">Contact</h3>
             <p className="text-sm text-slate-600">Have questions or feedback?</p>
             <Link
-              href="mailto:contact@oneshotengineer.com"
+              href="mailto:oneshotengineer@gmail.com"
               className="flex items-center gap-2 text-sm text-slate-600 hover:text-slate-800 transition-colors"
             >
               <Mail className="h-4 w-4" />
-              contact@oneshotengineer.com
+              oneshotengineer@gmail.com
             </Link>
           </div>
         </div>
@@ -126,7 +121,7 @@ export function SiteFooter() {
             &copy; {new Date().getFullYear()} One Shot Engineer. All rights reserved.
           </p>
           <div className="flex flex-col gap-2 text-sm">
-            <p className="font-bold text-slate-700 opacity-80">Made with ❤️ for engineering students</p>
+            <p className="font-bold text-slate-700 opacity-80">Made with ❤️ by students, for students.</p>
           </div>
         </div>
       </div>

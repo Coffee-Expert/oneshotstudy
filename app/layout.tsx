@@ -14,7 +14,7 @@ const inter = Inter({ subsets: ["latin"] })
  * Defines how the site appears in search results and social media
  */
 export const metadata: Metadata = {
-  title: "One Shot Engineer - Your Complete Engineering Study Resource",
+  title: "One Shot Study - Your Complete Engineering Study Resource",
   description:
     "Master engineering concepts with comprehensive courses, notes, GATE preparation, and internship opportunities. Your one-stop destination for B.Tech success.",
   keywords: [
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     "CSE",
     "computer science",
   ],
-  authors: [{ name: "One Shot Engineer Team" }],
+  authors: [{ name: "One Shot StudyTeam" }],
   creator: "One Shot Engineer",
   publisher: "One Shot Engineer",
   robots: "index, follow",
@@ -37,13 +37,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://oneshotengineer.com",
     siteName: "One Shot Engineer",
-    title: "One Shot Engineer - Your Complete Engineering Study Resource",
+    title: "One Shot Study- Your Complete Engineering Study Resource",
     description:
       "Master engineering concepts with comprehensive courses, notes, GATE preparation, and internship opportunities.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "One Shot Engineer - Your Complete Engineering Study Resource",
+    title: "One Shot Study- Your Complete Engineering Study Resource",
     description:
       "Master engineering concepts with comprehensive courses, notes, GATE preparation, and internship opportunities.",
     creator: "@oneshotengineer",
