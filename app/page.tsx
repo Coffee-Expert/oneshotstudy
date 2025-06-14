@@ -15,9 +15,8 @@ import { LoadingSpinner } from "@/components/loading-spinner"
 
 // Animation variants for smooth page transitions
 const fadeInUp = {
-  initial: { opacity: 0, y: 60 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 },
+  initial: { opacity: 0, y: 20, transition: { duration: 0.5 } },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 }
 
 // Stagger animation for multiple elements
