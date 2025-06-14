@@ -91,7 +91,7 @@ export default function InternshipDetailsPage() {
         <main className="flex-1">
           <div className="container py-12 text-center">
             <h1 className="text-2xl font-bold text-stone-800">Internship not found</h1>
-            <p className="text-stone-600 mt-2">The internship you're looking for doesn't exist.</p>
+            <p className="text-stone-600 mt-2">The internship you&apos;re looking for doesn&apos;t exist.</p>
             <Button asChild className="mt-6 bg-stone-700 hover:bg-stone-800 text-stone-100">
               <Link href="/internships">
                 <ArrowLeft className="mr-2 h-4 w-4" />
@@ -145,7 +145,7 @@ export default function InternshipDetailsPage() {
             width={800} height={400} 
             className="h-full w-full object-contain"
             onError={(e) => {
-              // fallback in case logo doesn't load
+              // fallback in case logo doesn&apos;t load
               e.currentTarget.style.display = "none"
             }}
           />
@@ -300,7 +300,7 @@ export default function InternshipDetailsPage() {
                       APPLY NOW
                     </Button>
                     <p className="text-xs text-stone-500 mt-2 text-center">
-                      You'll be redirected to the application page
+                      You&apos;ll be redirected to the application page
                     </p>
                   </div>
                 </CardContent>

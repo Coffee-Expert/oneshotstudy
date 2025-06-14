@@ -11,10 +11,10 @@ import { SiteFooter } from "@/components/site-footer"
 import { BackButton } from "@/components/back-button"
 
 const fadeInUp = {
-  initial: { opacity: 0, y: 60 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6 },
+  initial: { opacity: 0, y: 20, transition: { duration: 0.5 } },
+  animate: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 }
+
 
 const staggerContainer = {
   animate: {
@@ -125,7 +125,7 @@ export default function AboutPage() {
                     Get in Touch
                   </CardTitle>
                   <CardDescription className="text-stone-600">
-                    Have questions or need support? We're here to help!
+                    Have questions or need support? We&apos;re here to help!
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="p-8 pt-0 space-y-4">

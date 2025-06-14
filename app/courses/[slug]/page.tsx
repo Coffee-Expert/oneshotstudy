@@ -68,7 +68,7 @@ export default function CourseDetailsPage() {
         <main className="flex-1">
           <div className="container py-8 text-center">
             <h1 className="text-2xl font-bold text-stone-800">Course not found</h1>
-            <p className="text-stone-600 mt-2">The course you're looking for doesn't exist.</p>
+            <p className="text-stone-600 mt-2">The course you&apos;re looking for doesn&apos;t exist.</p>
             <div className="mt-4">
               <BackButton href="/courses" label="Back to Courses" />
             </div>
