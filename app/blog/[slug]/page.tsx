@@ -175,7 +175,7 @@ export default function BlogPostPage() {
         <main className="flex-1">
           <div className="container py-12 text-center px-4 md:px-6">
             <h1 className="text-2xl font-bold text-stone-800">Blog post not found</h1>
-            <p className="text-stone-600 mt-2">The blog post you're looking for doesn't exist.</p>
+            <p className="text-stone-600 mt-2">The blog post you&apos;re looking for doesn&apos;t exist.</p>
             <Button asChild className="mt-6 bg-stone-700 hover:bg-stone-800 text-stone-100">
               <Link href="/blog">
                 <ArrowLeft className="mr-2 h-4 w-4" />

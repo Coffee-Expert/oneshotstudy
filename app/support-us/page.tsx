@@ -1,4 +1,5 @@
 "use client"
+import Image from "next/image";
 
 import React, { useState } from 'react'
 import { motion } from 'framer-motion'
@@ -7,7 +8,7 @@ import { motion } from 'framer-motion'
  * supportus Component
  * Refined donation UI with soft, neutral tones — not too white, not too dark.
  */
-export default function supportus() {
+export default function SupportUs() {
   const upiId = '9473692928@yapl'
   const [copied, setCopied] = useState(false)
   const [amount, setAmount] = useState(100)
@@ -82,7 +83,8 @@ export default function supportus() {
 
         {/* Actual QR Code */}
 <div className="flex justify-center bg-white p-8 rounded-lg border border-gray-200 mb-6">
-  <img
+  <Image
+  width={800} height={400} 
     src="/qr.svg"
     alt="UPI QR Code"
     className="w-40 h-40 object-contain"

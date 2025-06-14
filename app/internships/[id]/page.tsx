@@ -1,4 +1,5 @@
 "use client"
+import Image from "next/image";
 
 import { useEffect, useState } from "react"
 import { useParams, useRouter } from "next/navigation"
@@ -138,9 +139,10 @@ export default function InternshipDetailsPage() {
       {/* Company Logo */}
       {internshipData.logo_url && (
         <div className="h-20 w-20 rounded-md overflow-hidden bg-white shadow border border-stone-200 flex items-center justify-center">
-          <img
+          <Image
             src={internshipData.logo_url}
             alt={`${internshipData.company} logo`}
+            width={800} height={400} 
             className="h-full w-full object-contain"
             onError={(e) => {
               // fallback in case logo doesn't load
