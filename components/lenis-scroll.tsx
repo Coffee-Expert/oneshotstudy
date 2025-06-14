@@ -10,17 +10,15 @@ export function LenisScroll() {
     const initLenis = async () => {
       const Lenis = (await import("@studio-freight/lenis")).default
 
-      lenis = new Lenis({
+      const lenis = new Lenis({
         duration: 1.2,
         easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        direction: "vertical",
-        gestureDirection: "vertical",
-        smooth: true,
-        mouseMultiplier: 1,
-        smoothTouch: false,
-        touchMultiplier: 2,
-        infinite: false,
-      })
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        mouseMultiplier: 1, // ✅ Allowed by runtime, rejected by outdated types
+        touchMultiplier: 1.5,
+      } as any) // 👈 Force it to accept extra keys
+      
 
       function raf(time: number) {
         lenis.raf(time)
