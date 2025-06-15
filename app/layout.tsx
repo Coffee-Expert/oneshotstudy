@@ -2,6 +2,7 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
+import { Analytics } from '@vercel/analytics/next';
 
 import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/toaster"
@@ -74,7 +75,7 @@ export default function RootLayout({
 
         {/* Main content area - all pages render here */}
         {children}
-
+        <Analytics />
         {/* Global toast notification system */}
         <Toaster />
       </body>
