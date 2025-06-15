@@ -366,7 +366,7 @@ export default function Home() {
                 size="lg"
                 className="border-2 border-stone-300 hover:bg-stone-100 text-stone-700 px-8 py-4 text-lg shadow-lg hover:shadow-xl transition-all"
               >
-                <Link href="https://chat.whatsapp.com/invite/engineering-community" target="_blank">
+                <Link href="https://chat.whatsapp.com/DOifOx5wRGa66ZCmi9xakz" target="_blank">
                   Join WhatsApp Group <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>

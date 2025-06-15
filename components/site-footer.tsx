@@ -30,10 +30,10 @@ export function SiteFooter() {
                 </div>
                 <span className="sr-only">YouTube</span>
               </Link>
-              {/* <Link href="https://chat.whatsapp.com/invite/engineering-community" target="_blank" rel="noreferrer">
+               <Link href="https://chat.whatsapp.com/DOifOx5wRGa66ZCmi9xakz" target="_blank" rel="noreferrer">
                 <Phone className="h-5 w-5 text-slate-500 hover:text-slate-700 transition-colors" />
                 <span className="sr-only">WhatsApp</span>
-              </Link> */}
+              </Link> 
             </div>
           </div>
 
