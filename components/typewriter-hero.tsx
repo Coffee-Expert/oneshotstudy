@@ -97,3 +97,5 @@ export function TypewriterHero() {
     </section>
   )
 }
+
+//altering for redeployment
