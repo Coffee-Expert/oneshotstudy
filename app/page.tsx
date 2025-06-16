@@ -1,66 +1,80 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { ArrowRight, BookOpen, Briefcase, GraduationCap, PlayCircle, Users } from "lucide-react"
-import { motion } from "framer-motion"
+import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import {
+  ArrowRight,
+  BookOpen,
+  Briefcase,
+  GraduationCap,
+  PlayCircle,
+  Users,
+} from "lucide-react";
+import { motion } from "framer-motion";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { FeaturedCourse } from "@/components/featured-course"
-import { SiteHeader } from "@/components/site-header"
-import { SiteFooter } from "@/components/site-footer"
-import { TypewriterHero } from "@/components/typewriter-hero"
-import { LoadingSpinner } from "@/components/loading-spinner"
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { FeaturedCourse } from "@/components/featured-course";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { TypewriterHero } from "@/components/typewriter-hero";
+import { LoadingSpinner } from "@/components/loading-spinner";
 
 // Reusable animation variants
 const fadeInUp = {
   initial: { opacity: 0, y: 20 },
   animate: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-}
+};
 
 const staggerContainer = {
   animate: { transition: { staggerChildren: 0.1 } },
-}
+};
 
 const FEATURES = [
   {
     title: "Organized Courses",
-    description: "Structured video lectures organized by subject and topic for easy navigation.",
+    description:
+      "Structured video lectures organized by subject and topic for easy navigation.",
     icon: PlayCircle,
   },
   {
     title: "Downloadable Notes",
-    description: "Access comprehensive notes and study materials to complement video lectures.",
+    description:
+      "Access comprehensive notes and study materials to complement video lectures.",
     icon: BookOpen,
   },
   {
     title: "Internship Alerts",
-    description: "Stay updated with the latest internship opportunities for engineering students.",
+    description:
+      "Stay updated with the latest internship opportunities for engineering students.",
     icon: Briefcase,
   },
   {
     title: "YouTube Integration",
-    description: "Direct access to our YouTube channel with organized playlists and tutorials.",
+    description:
+      "Direct access to our YouTube channel with organized playlists and tutorials.",
     icon: PlayCircle,
   },
   {
     title: "AKTU Resources",
-    description: "Specialized content for AKTU students with quantum PDFs and exam updates.",
+    description:
+      "Specialized content for AKTU students with quantum PDFs and exam updates.",
     icon: GraduationCap,
   },
   {
     title: "Student Community",
-    description: "Connect with fellow students through our WhatsApp groups and discussions.",
+    description:
+      "Connect with fellow students through our WhatsApp groups and discussions.",
     icon: Users,
   },
-]
+];
 
 const COURSES = [
   {
     title: "Design Thinking",
-    description: "Learn design thinking methodology and human-centered design principles.",
+    description:
+      "Learn design thinking methodology and human-centered design principles.",
     slug: "/courses/design-thinking",
     icon: "code",
     level: "Beginner" as const,
@@ -69,7 +83,8 @@ const COURSES = [
   },
   {
     title: "Cloud Computing",
-    description: "Master cloud computing concepts, services, and deployment models.",
+    description:
+      "Master cloud computing concepts, services, and deployment models.",
     slug: "/courses/cloud-computing",
     icon: "server",
     level: "Intermediate" as const,
@@ -78,7 +93,8 @@ const COURSES = [
   },
   {
     title: "Software Testing",
-    description: "Learn software testing methodologies, tools, and best practices.",
+    description:
+      "Learn software testing methodologies, tools, and best practices.",
     slug: "/courses/software-testing",
     icon: "code",
     level: "Intermediate" as const,
@@ -87,31 +103,31 @@ const COURSES = [
   },
   {
     title: "Social Media & Digital Marketing",
-    description: "Understand social media strategies and digital marketing techniques.",
+    description:
+      "Understand social media strategies and digital marketing techniques.",
     slug: "/courses/social-media-digital-marketing",
     icon: "globe",
     level: "Beginner" as const,
     videos: 5,
     hours: 5,
   },
-]
+];
 
 export default function Home() {
-  const [isNavigating, setIsNavigating] = useState(false)
-  const router = useRouter()
+  const [isNavigating, setIsNavigating] = useState(false);
+  const router = useRouter();
 
   const handleNavigation = (href: string) => {
-    setIsNavigating(true)
-    setTimeout(() => router.push(href), 500) // uses Next.js SPA routing
-  }
+    setIsNavigating(true);
+    setTimeout(() => router.push(href), 500); // uses Next.js SPA routing
+  };
 
-  if (isNavigating) return <LoadingSpinner />
+  if (isNavigating) return <LoadingSpinner />;
 
   return (
     <div className="flex min-h-screen flex-col bg-stone-50">
       <SiteHeader />
       <main className="flex-1">
-
         {/* Hero */}
         <motion.section
           className="space-y-8 pb-12 pt-8 md:pb-16 md:pt-12 lg:py-40"
@@ -134,36 +150,64 @@ export default function Home() {
               className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl relative text-stone-800 leading-tight"
               variants={fadeInUp}
             >
-              <TypewriterHero  />
-              <svg className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-full max-w-md h-8" viewBox="0 0 400 30" fill="none" aria-hidden="true">
-                <path d="M20 20 Q 100 8 200 15 Q 300 22 380 12" stroke="#78716c" strokeWidth="3" opacity="0.6" />
-                <path d="M25 22 Q 120 10 220 17 Q 320 24 375 14" stroke="#78716c" strokeWidth="2" opacity="0.4" />
+              <TypewriterHero />
+              <svg
+                className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-full max-w-md h-8"
+                viewBox="0 0 400 30"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M20 20 Q 100 8 200 15 Q 300 22 380 12"
+                  stroke="#78716c"
+                  strokeWidth="3"
+                  opacity="0.6"
+                />
+                <path
+                  d="M25 22 Q 120 10 220 17 Q 320 24 375 14"
+                  stroke="#78716c"
+                  strokeWidth="2"
+                  opacity="0.4"
+                />
               </svg>
             </motion.h1>
           </div>
         </motion.section>
 
-        {/* Features */}
+        {/* Features Section */}
         <motion.section
           id="features"
-          className="container space-y-8 bg-stone-100 py-12 md:py-16 lg:py-32 rounded-3xl mx-auto my-12"
+          className="container space-y-8 rounded-3xl bg-muted/60 backdrop-blur-sm py-12 md:py-16 lg:py-32 mx-auto my-12 transition-colors"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
+          {/* Header */}
           <div className="mx-auto max-w-[58rem] text-center space-y-6 px-6">
-            <h2 className="font-heading text-3xl md:text-6xl relative text-stone-800">
+            <h2 className="font-heading text-3xl md:text-6xl relative text-foreground">
               Features
-              <svg className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-40 h-6" viewBox="0 0 200 25" fill="none" aria-hidden="true">
-                <path d="M15 18 Q 60 8 100 15 Q 140 22 185 12" stroke="#78716c" strokeWidth="2" opacity="0.5" />
+              <svg
+                className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-40 h-6"
+                viewBox="0 0 200 25"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M15 18 Q 60 8 100 15 Q 140 22 185 12"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  className="opacity-30 text-muted-foreground"
+                />
               </svg>
             </h2>
-            <p className="text-stone-600 sm:text-lg">
-              Everything you need to excel in your engineering studies in one place.
+            <p className="text-muted-foreground sm:text-lg">
+              Everything you need to excel in your engineering studies in one
+              place.
             </p>
           </div>
 
+          {/* Features Grid */}
           <motion.div
             className="mx-auto grid gap-6 sm:grid-cols-2 md:grid-cols-3 px-6"
             variants={staggerContainer}
@@ -173,20 +217,23 @@ export default function Home() {
           >
             {FEATURES.map(({ title, description, icon: Icon }, index) => (
               <motion.div key={index} variants={fadeInUp}>
-                <Card className="h-full hover:shadow-lg border bg-white/90 backdrop-blur-sm p-2 transition-all">
+                <Card className="h-full border bg-background/80 backdrop-blur-sm hover:shadow-md transition-all">
                   <CardHeader className="flex items-center justify-between pb-3">
-                    <CardTitle className="text-sm font-medium text-stone-800">{title}</CardTitle>
-                    <Icon className="h-5 w-5 text-stone-600" />
+                    <CardTitle className="text-sm font-medium text-foreground">
+                      {title}
+                    </CardTitle>
+                    <Icon className="h-5 w-5 text-muted-foreground" />
                   </CardHeader>
                   <CardContent className="pt-0">
-                    <p className="text-sm text-stone-600">{description}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {description}
+                    </p>
                   </CardContent>
                 </Card>
               </motion.div>
             ))}
           </motion.div>
         </motion.section>
-
         {/* Courses */}
         <motion.section
           id="courses"
@@ -199,11 +246,23 @@ export default function Home() {
           <div className="text-center space-y-6 max-w-[58rem] mx-auto">
             <h2 className="font-heading text-3xl md:text-6xl relative text-stone-800">
               Available Courses
-              <svg className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-64 h-6" viewBox="0 0 300 25" fill="none" aria-hidden="true">
-                <path d="M20 18 Q 80 8 150 15 Q 220 22 280 12" stroke="#78716c" strokeWidth="2" opacity="0.5" />
+              <svg
+                className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-64 h-6"
+                viewBox="0 0 300 25"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M20 18 Q 80 8 150 15 Q 220 22 280 12"
+                  stroke="#78716c"
+                  strokeWidth="2"
+                  opacity="0.5"
+                />
               </svg>
             </h2>
-            <p className="text-stone-600 sm:text-lg">Explore our curated courses with YouTube integration and notes.</p>
+            <p className="text-muted-foreground sm:text-lg">
+              Explore our curated courses with YouTube integration and notes.
+            </p>
           </div>
 
           {/* Course Cards */}
@@ -245,19 +304,43 @@ export default function Home() {
           <div className="text-center space-y-6 max-w-[58rem] mx-auto">
             <h2 className="font-heading text-3xl md:text-6xl text-stone-800 relative">
               Join Our Community
-              <svg className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-56 h-6" viewBox="0 0 280 25" fill="none" aria-hidden="true">
-                <path d="M20 18 Q 70 8 140 15 Q 210 22 260 12" stroke="#78716c" strokeWidth="2" opacity="0.5" />
+              <svg
+                className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-56 h-6"
+                viewBox="0 0 280 25"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M20 18 Q 70 8 140 15 Q 210 22 260 12"
+                  stroke="#78716c"
+                  strokeWidth="2"
+                  opacity="0.5"
+                />
               </svg>
             </h2>
-            <p className="text-stone-600 sm:text-lg">Connect with fellow students, ask questions, collaborate on projects.</p>
+            <p className="text-stone-600 sm:text-lg">
+              Connect with fellow students, ask questions, collaborate on
+              projects.
+            </p>
             <div className="flex flex-col gap-4 sm:flex-row justify-center">
-              <Button asChild variant="outline" size="lg" className="border-2 border-stone-300 text-stone-700">
-                <Link href="https://chat.whatsapp.com/DOifOx5wRGa66ZCmi9xakz" target="_blank">
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="border-2 border-stone-300 text-stone-700"
+              >
+                <Link
+                  href="https://chat.whatsapp.com/DOifOx5wRGa66ZCmi9xakz"
+                  target="_blank"
+                >
                   Join WhatsApp Group <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
               <Button asChild size="lg" className="bg-stone-700 text-stone-100">
-                <Link href="https://www.youtube.com/@OneShotEngineer" target="_blank">
+                <Link
+                  href="https://www.youtube.com/@OneShotEngineer"
+                  target="_blank"
+                >
                   Subscribe on YouTube <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
@@ -267,5 +350,5 @@ export default function Home() {
       </main>
       <SiteFooter />
     </div>
-  )
+  );
 }

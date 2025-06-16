@@ -107,54 +107,57 @@ export default function QuantumPage() {
           </div>
 
           <div className="mt-12 flex flex-col gap-8 md:flex-row">
-            <div className="md:w-1/4 space-y-6">
-              <div className="space-y-6 bg-white p-6 rounded-lg border border-stone-200 shadow-sm">
-                <div className="space-y-3">
-                  <h3 className="text-sm font-medium text-stone-800">Branch</h3>
-                  <Select value={selectedBranch} onValueChange={setSelectedBranch}>
-                    <SelectTrigger className="border-2 border-stone-200">
-                      <SelectValue placeholder="Select branch" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="cse">Computer Science</SelectItem>
-                      {/* Other branches would be added here */}
-                    </SelectContent>
-                  </Select>
-                </div>
+  {/* Sidebar Filters */}
+  <div className="md:w-1/4 space-y-6">
+    <div className="space-y-6 rounded-lg border bg-card p-6 shadow-sm transition-colors">
+      {/* Branch Filter */}
+      <div className="space-y-3">
+        <h3 className="text-sm font-medium text-foreground">Branch</h3>
+        <Select value={selectedBranch} onValueChange={setSelectedBranch}>
+          <SelectTrigger className="border-muted bg-background text-foreground">
+            <SelectValue placeholder="Select branch" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="cse">Computer Science</SelectItem>
+            {/* Add more branches here */}
+          </SelectContent>
+        </Select>
+      </div>
 
-                <div className="space-y-3">
-                  <h3 className="text-sm font-medium text-stone-800">Semester</h3>
-                  <Select value={selectedSemester} onValueChange={setSelectedSemester}>
-                    <SelectTrigger className="border-2 border-stone-200">
-                      <SelectValue placeholder="Select semester" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All Semesters</SelectItem>
-                      <SelectItem value="1">Semester 1</SelectItem>
-                      <SelectItem value="2">Semester 2</SelectItem>
-                      <SelectItem value="3">Semester 3</SelectItem>
-                      <SelectItem value="4">Semester 4</SelectItem>
-                      <SelectItem value="5">Semester 5</SelectItem>
-                      <SelectItem value="6">Semester 6</SelectItem>
-                      <SelectItem value="7">Semester 7</SelectItem>
-                      <SelectItem value="8">Semester 8</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
+      {/* Semester Filter */}
+      <div className="space-y-3">
+        <h3 className="text-sm font-medium text-foreground">Semester</h3>
+        <Select value={selectedSemester} onValueChange={setSelectedSemester}>
+          <SelectTrigger className="border-muted bg-background text-foreground">
+            <SelectValue placeholder="Select semester" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">All Semesters</SelectItem>
+            {[1, 2, 3, 4, 5, 6, 7, 8].map((sem) => (
+              <SelectItem key={sem} value={sem.toString()}>
+                Semester {sem}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
 
-                <Button
-                  variant="outline"
-                  className="w-full border-2 border-stone-300 hover:bg-stone-50 text-stone-700"
-                  onClick={() => {
-                    setSearchQuery("")
-                    setSelectedBranch("cse")
-                    setSelectedSemester("all")
-                  }}
-                >
-                  Reset Filters
-                </Button>
-              </div>
-            </div>
+      {/* Reset Button */}
+      <Button
+        variant="outline"
+        className="w-full border-muted text-foreground hover:bg-muted/40"
+        onClick={() => {
+          setSearchQuery("")
+          setSelectedBranch("cse")
+          setSelectedSemester("all")
+        }}
+      >
+        Reset Filters
+      </Button>
+    </div>
+  </div>
+
+
 
             <div className="md:w-3/4">
               <motion.div
@@ -166,52 +169,43 @@ export default function QuantumPage() {
                 {filteredQuantums.length > 0 ? (
                   filteredQuantums.map((quantum) => (
                     <motion.div key={quantum.id} variants={item}>
-                      <Card className="flex flex-col h-full shadow-lg border-2 border-stone-100 hover:border-stone-300 transition-all bg-white/90 backdrop-blur-sm">
-                        <CardHeader className="pb-4">
-                          <div className="flex items-center gap-3">
-                            <BookOpen className="h-6 w-6 text-stone-600" />
-                            <div className="flex-1">
-                              <CardTitle className="line-clamp-2 text-stone-800 text-lg leading-tight">
-                                {quantum.title}
-                              </CardTitle>
-                              <div className="mt-1">
-                                <Badge
-                                  variant="outline"
-                                  className="bg-stone-100 border-stone-300 text-stone-700 text-xs"
-                                >
-                                  {quantum.subjectCode}
-                                </Badge>
-                              </div>
-                            </div>
-                          </div>
-                          <CardDescription className="line-clamp-3 text-stone-600 leading-relaxed">
-                            {quantum.description}
-                          </CardDescription>
-                        </CardHeader>
-                        <CardContent className="flex-1 pt-0">
-                          <div className="flex flex-wrap gap-2">
-                            <Badge variant="outline" className="bg-stone-50 border-stone-200 text-stone-700">
-                              AKTU
-                            </Badge>
-                            <Badge variant="outline" className="bg-stone-50 border-stone-200 text-stone-700">
-                              Semester {quantum.semester}
-                            </Badge>
-                            <Badge variant="outline" className="bg-stone-50 border-stone-200 text-stone-700">
-                              {quantum.pages} Pages
-                            </Badge>
-                          </div>
-                        </CardContent>
-                        <CardFooter className="border-t border-stone-100 pt-4">
-                          <Button
-                            className="w-full bg-stone-600 hover:bg-stone-700 text-stone-100 py-2"
-                            size="sm"
-                            onClick={() => handleDownload(quantum.title)}
-                          >
-                            <Download className="mr-2 h-4 w-4" />
-                            Download Quantum
-                          </Button>
-                        </CardFooter>
-                      </Card>
+<Card className="flex flex-col h-full shadow-lg border bg-card hover:border-border transition-all">
+  <CardHeader className="pb-4">
+    <div className="flex items-center gap-3">
+      <BookOpen className="h-6 w-6 text-muted-foreground" />
+      <div className="flex-1">
+        <CardTitle className="line-clamp-2 text-foreground text-lg leading-tight">
+          {quantum.title}
+        </CardTitle>
+        <div className="mt-1">
+          <Badge variant="outline" className="bg-muted text-muted-foreground border">
+            {quantum.subjectCode}
+          </Badge>
+        </div>
+      </div>
+    </div>
+    <CardDescription className="line-clamp-3 text-muted-foreground">
+      {quantum.description}
+    </CardDescription>
+  </CardHeader>
+  <CardContent className="flex-1 pt-0">
+    <div className="flex flex-wrap gap-2">
+      <Badge variant="outline">AKTU</Badge>
+      <Badge variant="outline">Semester {quantum.semester}</Badge>
+      <Badge variant="outline">{quantum.pages} Pages</Badge>
+    </div>
+  </CardContent>
+  <CardFooter className="border-t border-border pt-4">
+    <Button
+      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+      size="sm"
+      onClick={() => handleDownload(quantum.title)}
+    >
+      <Download className="mr-2 h-4 w-4" />
+      Download Quantum
+    </Button>
+  </CardFooter>
+</Card>
                     </motion.div>
                   ))
                 ) : (

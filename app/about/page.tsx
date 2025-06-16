@@ -1,20 +1,33 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Mail, Phone, MapPin, Users, BookOpen, Target, Heart } from "lucide-react"
-import Link from "next/link"
+import { motion } from "framer-motion";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Users,
+  BookOpen,
+  Target,
+  Heart,
+} from "lucide-react";
+import Link from "next/link";
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { SiteHeader } from "@/components/site-header"
-import { SiteFooter } from "@/components/site-footer"
-import { BackButton } from "@/components/back-button"
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { BackButton } from "@/components/back-button";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 20, transition: { duration: 0.5 } },
   animate: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-}
-
+};
 
 const staggerContainer = {
   animate: {
@@ -22,7 +35,7 @@ const staggerContainer = {
       staggerChildren: 0.1,
     },
   },
-}
+};
 
 export default function AboutPage() {
   return (
@@ -61,53 +74,61 @@ export default function AboutPage() {
               </svg>
             </h1>
             <p className="text-xl text-stone-600 max-w-3xl mx-auto leading-relaxed">
-              Empowering engineering students with comprehensive study resources, practical guidance, and a supportive
-              community to achieve academic and career success.
+              Empowering engineering students with comprehensive study
+              resources, practical guidance, and a supportive community to
+              achieve academic and career success.
             </p>
           </motion.div>
 
           {/* Mission, Vision, Values */}
-          <motion.div className="grid gap-8 md:grid-cols-3 mb-16" variants={staggerContainer}>
+          <motion.div
+            className="grid gap-8 md:grid-cols-3 mb-16"
+            variants={staggerContainer}
+          >
             <motion.div variants={fadeInUp}>
-              <Card className="h-full border border-stone-200 bg-white/90 backdrop-blur-sm p-6">
+              <Card className="h-full border bg-background/80 backdrop-blur-sm p-6 transition-colors">
                 <CardHeader className="text-center">
-                  <Target className="h-12 w-12 text-stone-600 mx-auto mb-4" />
-                  <CardTitle className="text-stone-800">Our Mission</CardTitle>
+                  <Target className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
+                  <CardTitle className="text-foreground">Our Mission</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-stone-600 text-center leading-relaxed">
-                    To democratize quality engineering education by providing accessible, comprehensive, and practical
-                    learning resources that bridge the gap between academic theory and industry requirements.
+                  <p className="text-center text-muted-foreground leading-relaxed">
+                    To democratize quality engineering education by providing
+                    accessible, comprehensive, and practical learning resources
+                    that bridge the gap between academic theory and industry
+                    requirements.
                   </p>
                 </CardContent>
               </Card>
             </motion.div>
 
             <motion.div variants={fadeInUp}>
-              <Card className="h-full border border-stone-200 bg-white/90 backdrop-blur-sm p-6">
-                <CardHeader className="text-center">
-                  <BookOpen className="h-12 w-12 text-stone-600 mx-auto mb-4" />
-                  <CardTitle className="text-stone-800">Our Vision</CardTitle>
+              <Card className="h-full border bg-background/80 backdrop-blur-sm p-6 transition-colors">
+              <CardHeader className="text-center">
+                  <Target className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
+                  <CardTitle className="text-foreground">Our Vision</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-stone-600 text-center leading-relaxed">
-                    To become the go-to platform for engineering students worldwide, fostering a community where
-                    knowledge sharing, practical learning, and career growth thrive together.
+                  <p className="text-center text-muted-foreground leading-relaxed">
+                    To become the go-to platform for engineering students
+                    worldwide, fostering a community where knowledge sharing,
+                    practical learning, and career growth thrive together.
                   </p>
                 </CardContent>
               </Card>
             </motion.div>
 
             <motion.div variants={fadeInUp}>
-              <Card className="h-full border border-stone-200 bg-white/90 backdrop-blur-sm p-6">
-                <CardHeader className="text-center">
-                  <Heart className="h-12 w-12 text-stone-600 mx-auto mb-4" />
-                  <CardTitle className="text-stone-800">Our Values</CardTitle>
+              <Card className="h-full border bg-background/80 backdrop-blur-sm p-6 transition-colors">
+              <CardHeader className="text-center">
+                  <Target className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
+                  <CardTitle className="text-foreground">Our Values</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-stone-600 text-center leading-relaxed">
-                    Excellence in education, accessibility for all, community-driven growth, practical application of
-                    knowledge, and continuous innovation in learning methodologies.
+                  <p className="text-center text-muted-foreground leading-relaxed">
+                    Excellence in education, accessibility for all,
+                    community-driven growth, practical application of knowledge,
+                    and continuous innovation in learning methodologies.
                   </p>
                 </CardContent>
               </Card>
@@ -115,7 +136,10 @@ export default function AboutPage() {
           </motion.div>
 
           {/* Contact Section */}
-          <motion.div className="grid gap-8 md:grid-cols-2" variants={staggerContainer}>
+          <motion.div
+            className="grid gap-8 md:grid-cols-2"
+            variants={staggerContainer}
+          >
             {/* Get in Touch */}
             <motion.div variants={fadeInUp}>
               <Card className="h-full border border-stone-200 bg-stone-100/80 backdrop-blur-sm">
@@ -124,20 +148,20 @@ export default function AboutPage() {
                     <Mail className="h-5 w-5" />
                     Get in Touch
                   </CardTitle>
-                  <CardDescription className="text-stone-600">
+                  <CardDescription className="text-muted-foreground">
                     Have questions or need support? We&apos;re here to help!
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="p-8 pt-0 space-y-4">
-                  <div className="flex items-center gap-3 text-stone-600">
+                  <div className="flex items-center gap-3 text-muted-foreground">
                     <Mail className="h-4 w-4" />
                     <span>contact@oneshotengineer.com</span>
                   </div>
-                  <div className="flex items-center gap-3 text-stone-600">
+                  <div className="flex items-center gap-3 text-muted-foreground">
                     <Phone className="h-4 w-4" />
                     <span>+91 XXXXX XXXXX</span>
                   </div>
-                  <div className="flex items-center gap-3 text-stone-600">
+                  <div className="flex items-center gap-3 text-muted-foreground">
                     <MapPin className="h-4 w-4" />
                     <span>India</span>
                   </div>
@@ -146,7 +170,9 @@ export default function AboutPage() {
                     variant="outline"
                     className="w-full mt-6 border-stone-300 text-stone-700 hover:bg-stone-200"
                   >
-                    <Link href="mailto:contact@oneshotengineer.com">Send Email</Link>
+                    <Link href="mailto:contact@oneshotengineer.com">
+                      Send Email
+                    </Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -160,16 +186,17 @@ export default function AboutPage() {
                     <Users className="h-5 w-5" />
                     Business Enquiries
                   </CardTitle>
-                  <CardDescription className="text-stone-600">
+                  <CardDescription className="text-muted-foreground">
                     Interested in partnerships or collaborations?
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="p-8 pt-0 space-y-4">
-                  <p className="text-stone-600 leading-relaxed">
-                    We welcome partnerships with educational institutions, companies, and content creators who share our
-                    vision of making quality engineering education accessible to all.
+                  <p className="text-muted-foreground leading-relaxed">
+                    We welcome partnerships with educational institutions,
+                    companies, and content creators who share our vision of
+                    making quality engineering education accessible to all.
                   </p>
-                  <ul className="space-y-2 text-stone-600">
+                  <ul className="space-y-2 text-muted-foreground">
                     <li>• Content partnerships</li>
                     <li>• Institutional collaborations</li>
                     <li>• Sponsorship opportunities</li>
@@ -180,7 +207,9 @@ export default function AboutPage() {
                     variant="outline"
                     className="w-full mt-6 border-stone-300 text-stone-700 hover:bg-stone-200"
                   >
-                    <Link href="mailto:business@oneshotengineer.com">Contact Business Team</Link>
+                    <Link href="mailto:business@oneshotengineer.com">
+                      Contact Business Team
+                    </Link>
                   </Button>
                 </CardContent>
               </Card>
@@ -189,10 +218,12 @@ export default function AboutPage() {
 
           {/* Community Section */}
           <motion.div className="mt-16 text-center" variants={fadeInUp}>
-            <h2 className="text-3xl font-bold mb-6 text-stone-800">Join Our Community</h2>
-            <p className="text-xl text-stone-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-              Connect with thousands of engineering students, share knowledge, and grow together in our supportive
-              community.
+            <h2 className="text-3xl font-bold mb-6 text-stone-800">
+              Join Our Community
+            </h2>
+            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed">
+              Connect with thousands of engineering students, share knowledge,
+              and grow together in our supportive community.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
@@ -201,12 +232,22 @@ export default function AboutPage() {
                 size="lg"
                 className="border-2 border-stone-300 hover:bg-stone-100 text-stone-700 px-8 py-4"
               >
-                <Link href="https://chat.whatsapp.com/invite/engineering-community" target="_blank">
+                <Link
+                  href="https://chat.whatsapp.com/invite/engineering-community"
+                  target="_blank"
+                >
                   Join WhatsApp Group
                 </Link>
               </Button>
-              <Button asChild size="lg" className="bg-stone-700 hover:bg-stone-800 text-stone-100 px-8 py-4">
-                <Link href="https://www.youtube.com/@OneShotEngineer" target="_blank">
+              <Button
+                asChild
+                size="lg"
+                className="bg-stone-700 hover:bg-stone-800 text-stone-100 px-8 py-4"
+              >
+                <Link
+                  href="https://www.youtube.com/@OneShotEngineer"
+                  target="_blank"
+                >
                   Subscribe on YouTube
                 </Link>
               </Button>
@@ -216,5 +257,5 @@ export default function AboutPage() {
       </main>
       <SiteFooter />
     </div>
-  )
+  );
 }

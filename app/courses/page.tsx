@@ -38,25 +38,19 @@ export default function CoursesPage() {
   const [selectedTopics, setSelectedTopics] = useState<string[]>([])
   const [filteredCourses, setFilteredCourses] = useState(coursesData)
 
-  // Filter courses based on search, level, branch, and topics
   useEffect(() => {
     const filtered = coursesData.filter((course) => {
-      // Filter by search query
       const matchesSearch =
         searchQuery === "" ||
         course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
         course.description.toLowerCase().includes(searchQuery.toLowerCase())
 
-      // Filter by level
       const matchesLevel = selectedLevel === "all" || course.level.toLowerCase() === selectedLevel.toLowerCase()
-
-      // Filter by branch
       const matchesBranch = selectedBranch === "all" || course.branch === selectedBranch
+      const matchesTopics =
+        selectedTopics.length === 0 || selectedTopics.some((topic) => course.topics.includes(topic))
 
-      // Filter by topics
-      const matchesTopics = selectedTopics.length === 0 || selectedTopics.some((topic) => course.topics.includes(topic))
-
-      return matchesSearch && matchesLevel && matchesBranch && (selectedTopics.length === 0 || matchesTopics)
+      return matchesSearch && matchesLevel && matchesBranch && matchesTopics
     })
 
     setFilteredCourses(filtered)
@@ -74,7 +68,7 @@ export default function CoursesPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col bg-slate-50">
+    <div className="flex min-h-screen flex-col bg-background text-foreground">
       <SiteHeader />
       <main className="flex-1">
         <motion.section
@@ -85,13 +79,12 @@ export default function CoursesPage() {
         >
           <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
             <div>
-              <h1 className="text-3xl font-bold tracking-tight text-slate-800 relative">
+              <h1 className="text-3xl font-bold tracking-tight relative">
                 Courses
-                {/* Handmade underline */}
                 <svg className="absolute -bottom-2 left-0 w-32 h-4" viewBox="0 0 150 20" fill="none">
                   <path
                     d="M10 15 Q 75 5 140 12"
-                    stroke="#64748b"
+                    stroke="hsl(var(--muted-foreground))"
                     strokeWidth="2"
                     fill="none"
                     strokeLinecap="round"
@@ -99,44 +92,40 @@ export default function CoursesPage() {
                   />
                 </svg>
               </h1>
-              <p className="text-slate-600">Browse all available courses organized by subject and topic.</p>
+              <p className="text-muted-foreground">Browse all available courses organized by subject and topic.</p>
             </div>
             <div className="flex items-center gap-2">
               <div className="relative">
-                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-slate-500" />
+                <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                 <Input
                   type="search"
                   placeholder="Search courses..."
-                  className="w-full pl-8 md:w-[200px] lg:w-[300px] border-slate-200 focus:border-slate-400"
+                  className="w-full pl-8 md:w-[200px] lg:w-[300px]"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
               </div>
               <Sheet>
                 <SheetTrigger asChild>
-                  <Button variant="outline" size="icon" className="border-slate-300 text-slate-600 hover:bg-slate-100">
+                  <Button variant="outline" size="icon">
                     <Filter className="h-4 w-4" />
                     <span className="sr-only">Filter</span>
                   </Button>
                 </SheetTrigger>
-                <SheetContent className="bg-white border-slate-200">
+                <SheetContent>
                   <SheetHeader>
-                    <SheetTitle className="text-slate-800">Filter Courses</SheetTitle>
-                    <SheetDescription className="text-slate-600">
+                    <SheetTitle>Filter Courses</SheetTitle>
+                    <SheetDescription>
                       Narrow down courses based on your preferences.
                     </SheetDescription>
                   </SheetHeader>
                   <div className="grid gap-4 py-4">
                     <div className="space-y-2">
-                      <h3 className="text-sm font-medium text-slate-800">Branch</h3>
+                      <h3 className="text-sm font-medium">Branch</h3>
                       <div className="flex flex-wrap gap-2">
                         <Badge
                           variant={selectedBranch === "cse" ? "default" : "outline"}
-                          className={`cursor-pointer ${
-                            selectedBranch === "cse"
-                              ? "bg-slate-700 text-slate-100"
-                              : "border-slate-300 text-slate-600 hover:bg-slate-100"
-                          }`}
+                          className="cursor-pointer"
                           onClick={() => setSelectedBranch("cse")}
                         >
                           CSE
@@ -144,7 +133,7 @@ export default function CoursesPage() {
                       </div>
                     </div>
                     <div className="space-y-2">
-                      <h3 className="text-sm font-medium text-slate-800">Topics</h3>
+                      <h3 className="text-sm font-medium">Topics</h3>
                       <div className="grid grid-cols-2 gap-2">
                         {[
                           "programming",
@@ -159,191 +148,74 @@ export default function CoursesPage() {
                               id={topic}
                               checked={selectedTopics.includes(topic)}
                               onCheckedChange={() => handleTopicChange(topic)}
-                              className="border-slate-300"
                             />
-                            <Label htmlFor={topic} className="text-sm text-slate-600 capitalize">
+                            <Label htmlFor={topic} className="text-sm capitalize">
                               {topic.replace("-", " ")}
                             </Label>
                           </div>
                         ))}
                       </div>
                     </div>
-                    <Button onClick={clearFilters} className="bg-slate-700 hover:bg-slate-800 text-slate-100">
-                      Clear Filters
-                    </Button>
+                    <Button onClick={clearFilters}>Clear Filters</Button>
                   </div>
                 </SheetContent>
               </Sheet>
             </div>
           </div>
-          <Tabs defaultValue="all" className="mt-8" value={selectedLevel} onValueChange={setSelectedLevel}>
+          <Tabs defaultValue="all" value={selectedLevel} onValueChange={setSelectedLevel} className="mt-8">
             <div className="flex justify-between">
-              <TabsList className="bg-slate-200 border border-slate-300">
-                <TabsTrigger
-                  value="all"
-                  className="data-[state=active]:bg-slate-700 data-[state=active]:text-slate-100"
-                >
-                  All Courses
-                </TabsTrigger>
-                <TabsTrigger
-                  value="beginner"
-                  className="data-[state=active]:bg-slate-700 data-[state=active]:text-slate-100"
-                >
-                  Beginner
-                </TabsTrigger>
-                <TabsTrigger
-                  value="intermediate"
-                  className="data-[state=active]:bg-slate-700 data-[state=active]:text-slate-100"
-                >
-                  Intermediate
-                </TabsTrigger>
-                <TabsTrigger
-                  value="advanced"
-                  className="data-[state=active]:bg-slate-700 data-[state=active]:text-slate-100"
-                >
-                  Advanced
-                </TabsTrigger>
+              <TabsList>
+                {["all", "beginner", "intermediate", "advanced"].map((level) => (
+                  <TabsTrigger
+                    key={level}
+                    value={level}
+                    className="capitalize data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                  >
+                    {level}
+                  </TabsTrigger>
+                ))}
               </TabsList>
               <div className="flex items-center gap-2">
-                <Badge variant="outline" className="rounded-md border-slate-300 text-slate-600">
-                  CSE
-                </Badge>
+                <Badge variant="outline">CSE</Badge>
               </div>
             </div>
-            <TabsContent value="all" className="mt-6">
-              <motion.div
-                className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-                variants={container}
-                initial="hidden"
-                animate="show"
-              >
-                {filteredCourses.length > 0 ? (
-                  filteredCourses.map((course, index) => (
-                    <motion.div key={course.slug} variants={item}>
-                      <FeaturedCourse
-                        title={course.title}
-                        description={course.description}
-                        slug={course.slug}
-                        icon={course.icon}
-                        level={course.level as "Beginner" | "Intermediate" | "Advanced"}
-                        videos={course.videos}
-                        hours={course.hours}
-                      />
-                    </motion.div>
-                  ))
-                ) : (
-                  <div className="col-span-full text-center py-12">
-                    <h3 className="text-lg font-medium text-slate-800">No courses found</h3>
-                    <p className="text-slate-600">Try adjusting your filters or search query</p>
-                    <Button onClick={clearFilters} className="mt-4 bg-slate-700 hover:bg-slate-800 text-slate-100">
-                      Clear Filters
-                    </Button>
-                  </div>
-                )}
-              </motion.div>
-            </TabsContent>
-            <TabsContent value="beginner" className="mt-6">
-              <motion.div
-                className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-                variants={container}
-                initial="hidden"
-                animate="show"
-              >
-                {filteredCourses.filter((course) => course.level === "Beginner").length > 0 ? (
-                  filteredCourses
-                    .filter((course) => course.level === "Beginner")
-                    .map((course) => (
-                      <motion.div key={course.slug} variants={item}>
-                        <FeaturedCourse
-                          title={course.title}
+
+            {["all", "beginner", "intermediate", "advanced"].map((level) => (
+              <TabsContent key={level} value={level} className="mt-6">
+                <motion.div
+                  className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+                  variants={container}
+                  initial="hidden"
+                  animate="show"
+                >
+                  {filteredCourses.filter((course) =>
+                    level === "all" ? true : course.level.toLowerCase() === level
+                  ).length > 0 ? (
+                    filteredCourses
+                      .filter((course) => level === "all" || course.level.toLowerCase() === level)
+                      .map((course) => (
+                        <motion.div key={course.slug} variants={item}>
+                          <FeaturedCourse title={course.title}
                           description={course.description}
                           slug={course.slug}
                           icon={course.icon}
                           level={course.level as "Beginner" | "Intermediate" | "Advanced"}
                           videos={course.videos}
-                          hours={course.hours}
-                        />
-                      </motion.div>
-                    ))
-                ) : (
-                  <div className="col-span-full text-center py-12">
-                    <h3 className="text-lg font-medium text-slate-800">No beginner courses found</h3>
-                    <p className="text-slate-600">Try adjusting your filters or search query</p>
-                    <Button onClick={clearFilters} className="mt-4 bg-slate-700 hover:bg-slate-800 text-slate-100">
-                      Clear Filters
-                    </Button>
-                  </div>
-                )}
-              </motion.div>
-            </TabsContent>
-            <TabsContent value="intermediate" className="mt-6">
-              <motion.div
-                className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-                variants={container}
-                initial="hidden"
-                animate="show"
-              >
-                {filteredCourses.filter((course) => course.level === "Intermediate").length > 0 ? (
-                  filteredCourses
-                    .filter((course) => course.level === "Intermediate")
-                    .map((course) => (
-                      <motion.div key={course.slug} variants={item}>
-                        <FeaturedCourse
-                          title={course.title}
-                          description={course.description}
-                          slug={course.slug}
-                          icon={course.icon}
-                          level={course.level as "Beginner" | "Intermediate" | "Advanced"}
-                          videos={course.videos}
-                          hours={course.hours}
-                        />
-                      </motion.div>
-                    ))
-                ) : (
-                  <div className="col-span-full text-center py-12">
-                    <h3 className="text-lg font-medium text-slate-800">No intermediate courses found</h3>
-                    <p className="text-slate-600">Try adjusting your filters or search query</p>
-                    <Button onClick={clearFilters} className="mt-4 bg-slate-700 hover:bg-slate-800 text-slate-100">
-                      Clear Filters
-                    </Button>
-                  </div>
-                )}
-              </motion.div>
-            </TabsContent>
-            <TabsContent value="advanced" className="mt-6">
-              <motion.div
-                className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
-                variants={container}
-                initial="hidden"
-                animate="show"
-              >
-                {filteredCourses.filter((course) => course.level === "Advanced").length > 0 ? (
-                  filteredCourses
-                    .filter((course) => course.level === "Advanced")
-                    .map((course) => (
-                      <motion.div key={course.slug} variants={item}>
-                        <FeaturedCourse
-                          title={course.title}
-                          description={course.description}
-                          slug={course.slug}
-                          icon={course.icon}
-                          level={course.level as "Beginner" | "Intermediate" | "Advanced"}
-                          videos={course.videos}
-                          hours={course.hours}
-                        />
-                      </motion.div>
-                    ))
-                ) : (
-                  <div className="col-span-full text-center py-12">
-                    <h3 className="text-lg font-medium text-slate-800">No advanced courses found</h3>
-                    <p className="text-slate-600">Try adjusting your filters or search query</p>
-                    <Button onClick={clearFilters} className="mt-4 bg-slate-700 hover:bg-slate-800 text-slate-100">
-                      Clear Filters
-                    </Button>
-                  </div>
-                )}
-              </motion.div>
-            </TabsContent>
+                          hours={course.hours}/>
+                        </motion.div>
+                      ))
+                  ) : (
+                    <div className="col-span-full text-center py-12">
+                      <h3 className="text-lg font-medium">No {level} courses found</h3>
+                      <p className="text-muted-foreground">Try adjusting your filters or search query</p>
+                      <Button onClick={clearFilters} className="mt-4">
+                        Clear Filters
+                      </Button>
+                    </div>
+                  )}
+                </motion.div>
+              </TabsContent>
+            ))}
           </Tabs>
         </motion.section>
       </main>

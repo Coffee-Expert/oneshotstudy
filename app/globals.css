@@ -4,87 +4,79 @@
 
 @layer base {
   :root {
-    /* Main Backgrounds & Text */
-    --background: 220 10% 18%;              /* Soft, dark blue-grey for main background */
-    --foreground: 220 10% 88%;             /* Light, desaturated grey-white for main text */
+    /* === Luxurious Warm Theme === */
 
-    /* Card & Popover - subtly lighter than background for depth */
-    --card: 220 10% 22%;
-    --card-foreground: 220 10% 88%;
+    --background: 30 20% 12%;             /* Warm deep brown-black */
+    --foreground: 30 25% 88%;             /* Creamy warm beige */
 
-    --popover: 220 10% 26%;
-    --popover-foreground: 220 10% 88%;
+    --card: 30 20% 16%;                   /* Slightly lighter than background */
+    --card-foreground: 30 25% 90%;
 
-    /* Primary Accent - Deep Blue */
-    --primary: 220 60% 45%;                /* Rich, deep blue (like a deep navy) */
-    --primary-foreground: 0 0% 100%;       /* Pure white for text on primary */
+    --popover: 30 20% 20%;
+    --popover-foreground: 30 25% 90%;
 
-    /* Secondary Accent - Muted Blue (variant of primary, or a slightly different cool tone) */
-    --secondary: 220 30% 30%;              /* Muted, darker blue */
-    --secondary-foreground: 220 10% 80%;   /* Lighter grey for text on secondary */
+    --primary: 40 80% 55%;                /* Rich amber gold */
+    --primary-foreground: 30 20% 10%;     /* Dark brown text */
 
-    /* Muted elements - for less emphasis, subtle details */
-    --muted: 220 10% 32%;
-    --muted-foreground: 220 10% 60%;       /* Medium grey for less critical text */
+    --secondary: 20 30% 25%;              /* Deep muted chocolate */
+    --secondary-foreground: 30 25% 85%;   /* Soft cream */
 
-    /* Accent - a slightly brighter version of primary for hover/active states */
-    --accent: 220 60% 55%;                 /* Brighter deep blue for accents */
-    --accent-foreground: 0 0% 100%;
+    --muted: 30 10% 28%;
+    --muted-foreground: 30 10% 60%;
 
-    /* Destructive - clear and universally understood red */
-    --destructive: 0 85% 50%;
+    --accent: 40 90% 60%;                 /* Brighter gold for hovers */
+    --accent-foreground: 30 20% 10%;
+
+    --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    /* Borders, Inputs, Focus Rings */
-    --border: 220 10% 35%;                 /* Subtle blue-grey border */
-    --input: 220 10% 28%;                  /* Slightly darker input background */
-    --ring: 220 60% 45%;                   /* Primary blue for focus rings */
+    --border: 30 10% 35%;
+    --input: 30 10% 20%;
+    --ring: 40 80% 55%;
 
     --radius: 0.5rem;
 
-    /* Custom chart palette (variations of blue and grey for consistency) */
-    --chart-1: 220 60% 45%;  /* Primary Blue */
-    --chart-2: 220 50% 35%;  /* Deeper Blue */
-    --chart-3: 220 40% 55%;  /* Lighter Blue */
-    --chart-4: 220 30% 65%;  /* Even Lighter Blue */
-    --chart-5: 220 10% 50%;  /* Mid Grey */
+    --chart-1: 40 80% 55%;
+    --chart-2: 30 25% 45%;
+    --chart-3: 40 90% 60%;
+    --chart-4: 30 15% 65%;
+    --chart-5: 20 10% 40%;
   }
 
-  /* Keeping dark mode consistent with the base, as the base is already a dark theme */
   .dark {
-    --background: 220 10% 18%;
-    --foreground: 220 10% 88%;
+    --background: 30 20% 12%;
+    --foreground: 30 25% 88%;
 
-    --card: 220 10% 22%;
-    --card-foreground: 220 10% 88%;
+    --card: 30 20% 16%;
+    --card-foreground: 30 25% 90%;
 
-    --popover: 220 10% 26%;
-    --popover-foreground: 220 10% 88%;
+    --popover: 30 20% 20%;
+    --popover-foreground: 30 25% 90%;
 
-    --primary: 220 60% 45%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 40 80% 55%;
+    --primary-foreground: 30 20% 10%;
 
-    --secondary: 220 30% 30%;
-    --secondary-foreground: 220 10% 80%;
+    --secondary: 20 30% 25%;
+    --secondary-foreground: 30 25% 85%;
 
-    --muted: 220 10% 32%;
-    --muted-foreground: 220 10% 60%;
+    --muted: 30 10% 28%;
+    --muted-foreground: 30 10% 60%;
 
-    --accent: 220 60% 55%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 40 90% 60%;
+    --accent-foreground: 30 20% 10%;
 
-    --destructive: 0 85% 50%;
+    --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 10% 35%;
-    --input: 220 10% 28%;
-    --ring: 220 60% 45%;
+    --border: 30 10% 35%;
+    --input: 30 10% 20%;
+    --ring: 40 80% 55%;
 
-    --chart-1: 220 60% 45%;
-    --chart-2: 220 50% 35%;
-    --chart-3: 220 40% 55%;
-    --chart-4: 220 30% 65%;
-    --chart-5: 220 10% 50%;
+    --chart-1: 40 80% 55%;
+    --chart-2: 30 25% 45%;
+    --chart-3: 40 90% 60%;
+    --chart-4: 30 15% 65%;
+    --chart-5: 20 10% 40%;
   }
 }
 
@@ -98,7 +90,6 @@
   }
 }
 
-/* Enhanced text selection with primary background and foreground text */
 ::selection {
   background-color: hsl(var(--primary));
   color: hsl(var(--primary-foreground));
@@ -109,12 +100,10 @@
   color: hsl(var(--primary-foreground));
 }
 
-/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
 }
 
-/* Custom scrollbar - updated to use new palette */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -124,21 +113,19 @@ html {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: hsl(var(--primary)); /* Primary accent */
+  background: hsl(var(--primary));
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--accent)); /* Brighter accent on hover */
+  background: hsl(var(--accent));
 }
 
-/* Focus ring for accessibility - updated to use new palette */
 *:focus-visible {
   outline: 2px solid hsl(var(--ring));
   outline-offset: 2px;
 }
 
-/* Smooth transitions */
 button,
 a,
 input,
@@ -146,7 +133,6 @@ textarea {
   transition: all 0.2s ease-in-out;
 }
 
-/* Container styles (unchanged, as they are layout specific) */
 .container {
   width: 100%;
   margin-left: auto;

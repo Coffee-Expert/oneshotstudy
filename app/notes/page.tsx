@@ -115,50 +115,43 @@ export default function NotesPage() {
                 {filteredNotes.length > 0 ? (
                   filteredNotes.map((note) => (
                     <motion.div key={note.id} variants={item}>
-                      <Card className="flex flex-col h-full shadow-lg border-2 border-stone-100 hover:border-stone-300 transition-all bg-white/90 backdrop-blur-sm">
-                        <CardHeader className="pb-4">
-                          <div className="flex items-center gap-3">
-                            <FileText className="h-6 w-6 text-stone-600" />
-                            <div className="flex-1">
-                              <CardTitle className="line-clamp-2 text-stone-800 text-lg leading-tight">
-                                {note.title}
-                              </CardTitle>
-                              <div className="mt-1">
-                                <Badge
-                                  variant="outline"
-                                  className="bg-stone-100 border-stone-300 text-stone-700 text-xs"
-                                >
-                                  {note.subjectCode}
-                                </Badge>
-                              </div>
-                            </div>
-                          </div>
-                          <CardDescription className="line-clamp-3 text-stone-600 leading-relaxed">
-                            {note.description}
-                          </CardDescription>
-                        </CardHeader>
-                        <CardContent className="flex-1 pt-0">
-                          <div className="flex flex-wrap gap-2">
-                            <Badge variant="outline" className="bg-stone-50 border-stone-200 text-stone-700">
-                              {note.format}
-                            </Badge>
-                            <Badge variant="outline" className="bg-stone-50 border-stone-200 text-stone-700">
-                              {note.pages} Pages
-                            </Badge>
-                          </div>
-                        </CardContent>
-                        <CardFooter className="border-t border-stone-100 pt-4">
-                          <Button
-                            className="w-full bg-stone-600 hover:bg-stone-700 text-stone-100 py-2"
-                            size="sm"
- onClick={() => window.open(note.link, "_blank")}
- 
-                          >
-                            <Download className="mr-2 h-4 w-4" />
-                            Download Notes
-                          </Button>
-                        </CardFooter>
-                      </Card>
+                     <Card className="flex flex-col h-full shadow-lg border bg-card hover:border-border transition-all backdrop-blur-sm">
+  <CardHeader className="pb-4">
+    <div className="flex items-center gap-3">
+      <FileText className="h-6 w-6 text-muted-foreground" />
+      <div className="flex-1">
+        <CardTitle className="line-clamp-2 text-foreground text-lg leading-tight">
+          {note.title}
+        </CardTitle>
+        <div className="mt-1">
+          <Badge variant="outline">{note.subjectCode}</Badge>
+        </div>
+      </div>
+    </div>
+    <CardDescription className="line-clamp-3 text-muted-foreground leading-relaxed">
+      {note.description}
+    </CardDescription>
+  </CardHeader>
+
+  <CardContent className="flex-1 pt-0">
+    <div className="flex flex-wrap gap-2">
+      <Badge variant="outline">{note.format}</Badge>
+      <Badge variant="outline">{note.pages} Pages</Badge>
+    </div>
+  </CardContent>
+
+  <CardFooter className="border-t border-border pt-4">
+    <Button
+      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-2"
+      size="sm"
+      onClick={() => window.open(note.link, "_blank")}
+    >
+      <Download className="mr-2 h-4 w-4" />
+      Download Notes
+    </Button>
+  </CardFooter>
+</Card>
+
                     </motion.div>
                   ))
                 ) : (
