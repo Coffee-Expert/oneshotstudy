@@ -62,7 +62,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="dark" >
       <head>
         {/* Basic meta tags for responsive design and favicon */}
         <meta name="viewport" content="width=device-width, initial-scale=1" />

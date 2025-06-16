@@ -74,18 +74,18 @@ export function TypewriterHero() {
         transition={{ duration: 0.8 }}
         className="space-y-4"
       >
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-slate-800 leading-tight">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-grey-800 leading-tight">
           <span className="block mb-4">One Shot Study</span>
 
           {/* Dynamic typewriter text */}
-          <span className="block text-3xl md:text-4xl lg:text-5xl text-slate-600">
+          <span className="block text-3xl md:text-4xl lg:text-5xl text-grey-600">
             {currentText}
-            <span className="animate-pulse text-slate-400">|</span>
+            <span className="animate-pulse text-grey-400">|</span>
           </span>
         </h1>
 
         {/* Subtitle */}
-        <p className="text-xl md:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-xl md:text-2xl text-grey-600 max-w-3xl mx-auto leading-relaxed">
           Comprehensive courses, notes, and resources for engineering students. Everything you need to excel in your
           B.Tech journey.
         </p>
@@ -100,7 +100,7 @@ export function TypewriterHero() {
       >
         <motion.a
           href="/courses"
-          className="bg-slate-800 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-slate-700 transition-colors shadow-lg"
+          className="bg-grey-800 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-grey-700 transition-colors shadow-lg"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -109,7 +109,7 @@ export function TypewriterHero() {
 
         <motion.a
           href="/notes"
-          className="border-2 border-slate-800 text-slate-800 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-slate-800 hover:text-white transition-colors"
+          className="border-2 border-grey-800 text-grey-800 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-grey-800 hover:text-white transition-colors"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
