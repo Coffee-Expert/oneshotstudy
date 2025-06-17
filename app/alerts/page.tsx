@@ -111,7 +111,7 @@ export default function AlertsPage() {
               <Bell className="h-8 w-8 text-stone-700" />
               <h1 className="text-4xl md:text-5xl font-bold text-stone-800">Important Alerts</h1>
             </div>
-            <p className="text-xl text-stone-600 max-w-3xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Stay updated with exam dates, form deadlines, results, and other important announcements
             </p>
           </motion.div>
@@ -144,7 +144,7 @@ export default function AlertsPage() {
             <div className="text-center py-12">
               <Bell className="h-16 w-16 text-stone-300 mx-auto mb-4" />
               <h3 className="text-xl font-semibold text-stone-600 mb-2">No alerts found</h3>
-              <p className="text-stone-500">
+              <p className="text-muted-foreground ">
                 No alerts match your current filter. Try selecting a different category.
               </p>
             </div>
@@ -171,8 +171,8 @@ export default function AlertsPage() {
                       <CardTitle className="text-lg leading-tight">{alert.title}</CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-4">
-                      <p className="text-stone-600 leading-relaxed">{alert.description}</p>
-                      <div className="flex items-center gap-2 text-sm text-stone-500">
+                      <p className="text-muted-foreground  leading-relaxed">{alert.description}</p>
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground ">
                         <Calendar className="h-4 w-4" />
                         <span>Date: {formatDate(alert.start_date || alert.date)}</span>
                       </div>

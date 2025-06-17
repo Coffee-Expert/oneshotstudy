@@ -269,7 +269,7 @@ export default function InternshipsPage() {
                 ) : filteredInternships.length > 0 ? (
                   filteredInternships.map((internship: any) => (
                     <motion.div key={internship.id} variants={item}>
-                      <Card className="shadow-sm border-2 border-stone-100 hover:border-stone-300 transition-all bg-white/80 backdrop-blur-sm">
+                      <Card className="shadow-sm border-2 border-stone-100 hover:border-stone-300 transition-all bg-muted backdrop-blur-sm">
   <CardHeader>
     <div className="flex items-center justify-between">
       <CardTitle className="text-stone-800">{internship.title}</CardTitle>
@@ -326,7 +326,7 @@ export default function InternshipsPage() {
       <Button
         asChild
         size="lg"
-        className="bg-stone-700 hover:bg-stone-800 text-white px-6 py-2"
+        className="bg-muted hover:bg-stone-800 text-white px-6 py-2"
       >
         <Link href={`/internships/${internship.id}`} className="flex items-center">
           <Eye className="mr-2 h-4 w-4" />
