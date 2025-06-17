@@ -92,7 +92,7 @@ export default function InternshipDetailsPage() {
           <div className="container py-12 text-center">
             <h1 className="text-2xl font-bold text-stone-800">Internship not found</h1>
             <p className="text-stone-600 mt-2">The internship you&apos;re looking for doesn&apos;t exist.</p>
-            <Button asChild className="mt-6 bg-stone-700 hover:bg-stone-800 text-stone-100">
+            <Button asChild className="mt-6 bg-stone-700 hover:bg-stone-800 text-muted-foreground">
               <Link href="/internships">
                 <ArrowLeft className="mr-2 h-4 w-4" />
                 Back to Internships
@@ -115,7 +115,7 @@ export default function InternshipDetailsPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <Button variant="ghost" asChild className="mb-8 text-stone-600 hover:text-stone-800 hover:bg-stone-100">
+          <Button variant="ghost" asChild className="mb-8 text-muted-foreground hover:text-stone-800 hover:bg-stone-100">
             <Link href="/internships">
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Internships
@@ -130,7 +130,7 @@ export default function InternshipDetailsPage() {
   <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
     <div className="flex flex-col gap-2">
       <h1 className="text-3xl md:text-4xl font-bold text-stone-800">{internshipData.title}</h1>
-      <div className="flex items-center gap-2 text-stone-600">
+      <div className="flex items-center gap-2 text-muted-foreground">
         <Building className="h-5 w-5" />
         <span className="text-lg font-medium">{internshipData.company}</span>
       </div>
@@ -159,7 +159,7 @@ export default function InternshipDetailsPage() {
     </div>
   </div>
 
-                <div className="flex flex-wrap gap-4 text-sm text-stone-600">
+                <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
                   <div className="flex items-center gap-1">
                     <MapPin className="h-4 w-4" />
                     <span>{internshipData.location}</span>
@@ -187,7 +187,7 @@ export default function InternshipDetailsPage() {
                   <CardTitle>About the Internship</CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-stone-700 leading-relaxed">{internshipData.description}</p>
+                  <p className="text-muted-foreground leading-relaxed">{internshipData.description}</p>
                 </CardContent>
               </Card>
 
