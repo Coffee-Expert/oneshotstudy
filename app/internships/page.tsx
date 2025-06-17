@@ -277,14 +277,14 @@ export default function InternshipsPage() {
         <Badge className="bg-stone-600 text-white">New</Badge>
       )}
     </div>
-    <CardDescription className="text-stone-600">
+    <CardDescription className="text-muted-foreground">
       {internship.company}
     </CardDescription>
   </CardHeader>
 
   <CardContent className="space-y-4">
     {/* Info Row with Location, Duration on Left, Stipend on Right */}
-    <div className="flex justify-between items-center text-sm text-stone-600">
+    <div className="flex justify-between items-center text-sm text-muted-foreground">
       <div className="flex gap-3 flex-wrap">
         <span className="flex items-center gap-1">
           <MapPin className="h-4 w-4" />
@@ -326,7 +326,7 @@ export default function InternshipsPage() {
       <Button
         asChild
         size="lg"
-        className="bg-muted hover:bg-stone-800 text-white px-6 py-2"
+        className="bg-stone-700 hover:bg-stone-800 text-white px-6 py-2"
       >
         <Link href={`/internships/${internship.id}`} className="flex items-center">
           <Eye className="mr-2 h-4 w-4" />

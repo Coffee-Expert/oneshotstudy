@@ -79,7 +79,7 @@ export default function NotesPage() {
                   />
                 </svg>
               </h1>
-              <p className="text-stone-600 mt-2">Download comprehensive notes for all subjects.</p>
+              <p className="text-muted-foreground mt-2">Download comprehensive notes for all subjects.</p>
             </div>
             <div className="flex items-center gap-3">
               <div className="relative">
