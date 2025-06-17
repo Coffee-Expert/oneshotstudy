@@ -273,19 +273,19 @@ export default function InternshipDetailsPage() {
                 <CardContent className="space-y-4">
                   <div className="space-y-3">
                     <div className="flex justify-between">
-                      <span className="text-stone-600">Positions:</span>
+                      <span className="text-muted-foreground">Positions:</span>
                       <span className="font-medium">{internshipData.positions}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-stone-600">Start Date:</span>
+                      <span className="text-muted-foreground">Start Date:</span>
                       <span className="font-medium">{internshipData.startDate}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-stone-600">Duration:</span>
+                      <span className="text-muted-foreground">Duration:</span>
                       <span className="font-medium">{internshipData.duration}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-stone-600">Deadline:</span>
+                      <span className="text-muted-foreground">Deadline:</span>
                       <span className="font-medium text-red-600">{internshipData.deadline}</span>
                     </div>
                   </div>
@@ -293,7 +293,7 @@ export default function InternshipDetailsPage() {
                   <div className="pt-4 border-t border-stone-200">
                     <Button
                       onClick={handleApplyClick}
-                      className="w-full bg-stone-800 hover:bg-stone-700 text-white flex items-center justify-center gap-2"
+                      className="w-full bg-stone-700 hover:bg-stone-800 text-white flex items-center justify-center gap-2"
                       size="lg"
                     >
                       <ExternalLink className="h-4 w-4" />
