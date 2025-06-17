@@ -99,7 +99,7 @@ export default function NotesPage() {
               <TabsList className="bg-stone-200 border-2 border-stone-200">
                 <TabsTrigger
                   value="cse"
-                  className="data-[state=active]:bg-stone-600 data-[state=active]:text-stone-100"
+                  className="data-[state=active]:bg-stone-600 data-[state=active]:text-stone-800"
                 >
                   CSE
                 </TabsTrigger>
