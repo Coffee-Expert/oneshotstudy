@@ -299,7 +299,7 @@ export default function InternshipDetailsPage() {
                       <ExternalLink className="h-4 w-4" />
                       APPLY NOW
                     </Button>
-                    <p className="text-xs text-stone-500 mt-2 text-center">
+                    <p className="text-xs text-muted-foreground mt-2 text-center">
                       You&apos;ll be redirected to the application page
                     </p>
                   </div>

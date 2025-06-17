@@ -192,7 +192,7 @@ export default function QuantumPage() {
     <div className="flex flex-wrap gap-2">
       <Badge variant="outline">AKTU</Badge>
       <Badge variant="outline">Semester {quantum.semester}</Badge>
-      <Badge variant="outline">{quantum.pages} Pages</Badge>
+      <Badge variant="outline"> PDF</Badge>
     </div>
   </CardContent>
   <CardFooter className="border-t border-border pt-4">
