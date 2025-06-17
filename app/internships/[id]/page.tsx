@@ -273,20 +273,20 @@ export default function InternshipDetailsPage() {
                 <CardContent className="space-y-4">
                   <div className="space-y-3">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Positions:</span>
-                      <span className="font-medium">{internshipData.positions}</span>
+                      <span className="text-foreground">Positions:</span>
+                      <span className="font-medium text-muted-foreground">{internshipData.positions}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Start Date:</span>
-                      <span className="font-medium">{internshipData.startDate}</span>
+                      <span className="text-foreground">Start Date:</span>
+                      <span className="font-medium text-muted-foreground">{internshipData.startDate}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Duration:</span>
-                      <span className="font-medium">{internshipData.duration}</span>
+                      <span className="text-foreground">Duration:</span>
+                      <span className="font-medium text-muted-foreground">{internshipData.duration}</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Deadline:</span>
-                      <span className="font-medium text-red-600">{internshipData.deadline}</span>
+                      <span className="text-foreground">Deadline:</span>
+                      <span className="font-medium text-muted-foreground">{internshipData.deadline}</span>
                     </div>
                   </div>
 
