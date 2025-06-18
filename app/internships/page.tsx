@@ -412,7 +412,7 @@ export default function InternshipsPage() {
                               size="default" // Using default size for better clickability
                               className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-2 shadow-md"
                             >
-                              <Link href={`/getintid?id=${internship.id}`}>
+                              <Link href={`/internships/${internship.id}`}>
                                 <div className="flex items-center">
                                   <Eye className="mr-2 mb-2 h-4 w-4" />
                                   Click to Know More
