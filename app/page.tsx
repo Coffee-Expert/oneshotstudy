@@ -10,20 +10,21 @@ import {
   GraduationCap,
   PlayCircle,
   Users,
-  Calendar, // Added Calendar for internship card
-  MapPin,   // Added MapPin for internship card
-  Eye       // Added Eye for internship card
+  Calendar,
+  MapPin,
+  Eye,
+  Download
 } from "lucide-react";
 import { motion } from "framer-motion";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"; // Added CardDescription
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
 import { FeaturedCourse } from "@/components/featured-course";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { TypewriterHero } from "@/components/typewriter-hero";
 import { LoadingSpinner } from "@/components/loading-spinner";
-import { Badge } from "@/components/ui/badge"; // Added Badge
+import { Badge } from "@/components/ui/badge";
 
 // Reusable animation variants
 const fadeInUp = {
@@ -35,37 +36,32 @@ const staggerContainer = {
   animate: { transition: { staggerChildren: 0.1 } },
 };
 
-const FEATURES = [
+// Updated: Renamed FEATURES to AKTU_RESOURCES and restructured for new section
+const AKTU_RESOURCES = [
   {
-    title: "Structured Courses",
-    description: "Access video lectures and comprehensive notes, organized by AKTU syllabus for focused learning.",
-    icon: PlayCircle,
-  },
-  {
-    title: "Downloadable Resources",
-    description: "Get essential study materials, including AKTU Quantum PDFs and handwritten notes, available offline.",
+    title: "Quantum PDFs",
+    description: "Access previous year&apos;s question papers and solutions for all subjects.",
     icon: BookOpen,
+    link: "/quantum"
   },
   {
-    title: "Internship Alerts",
-    description: "Stay ahead with curated internship opportunities, specifically for engineering students.",
-    icon: Briefcase,
+    title: "Exam Updates",
+    description: "Stay informed with the latest notifications and schedules from AKTU.",
+    icon: Calendar,
+    link: "https://aktu.ac.in/examination.html"
   },
   {
-    title: "YouTube Tutorials",
-    description: "Deepen your understanding with detailed explanations on our dedicated YouTube channel.",
-    icon: PlayCircle,
+    title: "Handwritten Notes",
+    description: "Download concise and comprehensive handwritten notes for quick revision.",
+    icon: BookOpen,
+    link: "/notes" // Placeholder link, adjust if you have a specific notes page
   },
   {
-    title: "AKTU Exam Prep",
-    description: "Find previous year question papers, exam updates, and strategic tips to ace your AKTU exams.",
+    title: "Syllabus & Curriculum",
+    description: "View detailed syllabus and curriculum guidelines for all engineering branches.",
     icon: GraduationCap,
-  },
-  {
-    title: "Vibrant Community",
-    description: "Connect with peers, share knowledge, and collaborate on projects in our active student groups.",
-    icon: Users,
-  },
+    link: "https://aktu.ac.in/syllabus.html" // Example AKTU syllabus link
+  }
 ];
 
 const COURSES = [
@@ -194,66 +190,6 @@ export default function Home() {
           </div>
         </motion.section>
 
-        {/* Features Section */}
-        <motion.section
-          id="features"
-          className="container space-y-8 rounded-3xl bg-muted/60 backdrop-blur-sm py-12 md:py-16 lg:py-32 mx-auto my-12 transition-colors"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          {/* Header */}
-          <div className="mx-auto max-w-[58rem] text-center space-y-6 px-6">
-            <h2 className="font-heading text-3xl md:text-6xl relative text-foreground">
-              Core Offerings
-              <svg
-                className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-40 h-6"
-                viewBox="0 0 200 25"
-                fill="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M15 18 Q 60 8 100 15 Q 140 22 185 12"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  className="opacity-30 text-muted-foreground"
-                />
-              </svg>
-            </h2>
-            <p className="text-muted-foreground sm:text-lg">
-              Empowering your engineering journey with comprehensive resources and community support.
-            </p>
-          </div>
-
-          {/* Features Grid */}
-          <motion.div
-            className="mx-auto grid gap-6 sm:grid-cols-2 md:grid-cols-3 px-6"
-            variants={staggerContainer}
-            initial="initial"
-            whileInView="animate"
-            viewport={{ once: true }}
-          >
-            {FEATURES.map(({ title, description, icon: Icon }, index) => (
-              <motion.div key={index} variants={fadeInUp}>
-                <Card className="h-full border border-border bg-card/80 backdrop-blur-sm hover:shadow-md transition-all">
-                  <CardHeader className="flex items-center justify-between pb-3">
-                    <CardTitle className="text-lg font-semibold text-foreground">
-                      {title}
-                    </CardTitle>
-                    <Icon className="h-6 w-6 text-primary" />
-                  </CardHeader>
-                  <CardContent className="pt-0">
-                    <p className="text-sm text-muted-foreground">
-                      {description}
-                    </p>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            ))}
-          </motion.div>
-        </motion.section>
-
         {/* Latest Internships Section */}
         <motion.section
           id="internships"
@@ -346,7 +282,7 @@ export default function Home() {
                         className="bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2"
                       >
                         <Link href={`/internships/${internship.id}`} className="flex items-center">
-                          <div className="flex items-center"> {/* Changed span to div here */}
+                          <div className="flex items-center">
                             <Eye className="mr-2 h-4 w-4" />
                             View Details
                           </div>
@@ -434,6 +370,74 @@ export default function Home() {
           </div>
         </motion.section>
 
+        {/* AKTU Exam & Study Hub Section (Replaced Features) */}
+        <motion.section
+          id="aktu-resources"
+          className="container space-y-8 rounded-3xl bg-muted/60 backdrop-blur-sm py-12 md:py-16 lg:py-32 mx-auto my-12 transition-colors"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+        >
+          {/* Header */}
+          <div className="mx-auto max-w-[58rem] text-center space-y-6 px-6">
+            <h2 className="font-heading text-3xl md:text-6xl relative text-foreground">
+              AKTU Exam &amp; Study Hub
+              <svg
+                className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-80 h-6" // Adjusted width
+                viewBox="0 0 400 25" // Adjusted viewBox
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M15 18 Q 100 8 200 15 Q 300 22 385 12" // Adjusted path
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  className="opacity-30 text-muted-foreground"
+                />
+              </svg>
+            </h2>
+            <p className="text-muted-foreground sm:text-lg">
+              Everything you need for successful AKTU exam preparation and continuous learning.
+            </p>
+          </div>
+
+          {/* Resources Grid */}
+          <motion.div
+            className="mx-auto grid gap-6 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 px-6" // Changed to lg:grid-cols-4
+            variants={staggerContainer}
+            initial="initial"
+            whileInView="animate"
+            viewport={{ once: true }}
+          >
+            {AKTU_RESOURCES.map(({ title, description, icon: Icon, link }, index) => (
+              <motion.div key={index} variants={fadeInUp}>
+                <Card className="h-full border border-border bg-card/80 backdrop-blur-sm hover:shadow-md transition-all">
+                  <CardHeader className="flex items-center justify-between pb-3">
+                    <CardTitle className="text-lg font-semibold text-foreground">
+                      {title}
+                    </CardTitle>
+                    <Icon className="h-6 w-6 text-primary" />
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <p className="text-sm text-muted-foreground mb-4">
+                      {description}
+                    </p>
+                    <Button asChild size="sm" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
+                      <Link href={link} target={link.startsWith('/') ? '_self' : '_blank'} rel={link.startsWith('/') ? '' : 'noopener noreferrer'}>
+                        <div className="flex items-center">
+                          {title === "Quantum PDFs" ? <Download className="mr-2 h-4 w-4" /> : <ArrowRight className="mr-2 h-4 w-4" />}
+                          {title === "Quantum PDFs" ? "Download Quantums" : "Learn More"}
+                        </div>
+                      </Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.section>
+
         {/* Community */}
         <motion.section
           id="community"
@@ -474,7 +478,7 @@ export default function Home() {
                   href="https://chat.whatsapp.com/DOifOx5wRGa66ZCmi9xakz"
                   target="_blank"
                 >
-                  <div className="flex items-center"> {/* Changed span to div here */}
+                  <div className="flex items-center">
                     Join WhatsApp Group <ArrowRight className="ml-2 h-5 w-5" />
                   </div>
                 </Link>
@@ -484,7 +488,7 @@ export default function Home() {
                   href="https://www.youtube.com/@OneShotEngineer"
                   target="_blank"
                 >
-                  <div className="flex items-center"> {/* Changed span to div here */}
+                  <div className="flex items-center">
                     Subscribe on YouTube <ArrowRight className="ml-2 h-5 w-5" />
                   </div>
                 </Link>
