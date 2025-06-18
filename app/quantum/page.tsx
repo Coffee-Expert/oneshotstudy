@@ -59,10 +59,10 @@ export default function QuantumPage() {
     const params = new URLSearchParams({
       title: `${title} Quantum`,
       description: `AKTU quantum PDF for ${title}`,
-      link: link,
+      url: link,
       return: "/quantum",
     })
-    window.location.href = `/timer-download?${params.toString()}`
+    window.location.href = `/download-page?${params.toString()}`
   }
 
   return (

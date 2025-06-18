@@ -106,7 +106,7 @@ export default function CourseDetailsPage() {
                 <Badge variant="outline" className="bg-popover border-input text-muted-foreground">
                   {courseData.language}
                 </Badge>
-               
+                
                 {courseData.subjectCode && (
                   <Badge variant="outline" className="bg-popover border-input text-muted-foreground">
                     Code: {courseData.subjectCode}
@@ -135,14 +135,11 @@ export default function CourseDetailsPage() {
                   />
                 </svg>
               </h1>
-<br/>
-              <p className="text-xl text-foreground mb-4" dangerouslySetInnerHTML={{ __html: courseData.description }}></p>
+
+              <p className="text-xl text-muted-foreground mb-4" dangerouslySetInnerHTML={{ __html: courseData.description }}></p>
 
               <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground">
-                <div className="flex items-center">
-                  <Clock className="mr-1 h-4 w-4 text-primary" />
-                  {courseData.duration} weeks
-                </div>
+                
                 <div className="flex items-center">
                   <Play className="mr-1 h-4 w-4 text-primary" />
                   {courseData.lessons} lessons
@@ -157,9 +154,32 @@ export default function CourseDetailsPage() {
                 </div>
               </div>
             </div>
-<br/>
-{/* Career Opportunities */}
-{courseData.careerOpportunities && courseData.careerOpportunities.length > 0 && (
+
+            {/* NEW SECTION: Skills and Career Opportunities side-by-side */}
+            <div className="grid gap-8 md:grid-cols-2">
+                {/* Skills You'll Get Card */}
+                {courseData.skillsGained && courseData.skillsGained.length > 0 && (
+                  <Card className="shadow-lg border border-border bg-card/90 backdrop-blur-sm">
+                    <CardHeader className="bg-card p-6">
+                      <CardTitle className="text-foreground flex items-center gap-2">
+                        <Code className="h-5 w-5 text-muted-foreground" />
+                        Skills You&apos;ll Get
+                      </CardTitle>
+                    </CardHeader>
+                    <CardContent className="p-6">
+                      <div className="flex flex-wrap gap-2">
+                        {courseData.skillsGained.map((skill: string, index: number) => (
+                          <Badge key={index} variant="secondary" className="bg-muted text-foreground border border-input px-3 py-1 text-sm rounded-md shadow-sm">
+                            {skill}
+                          </Badge>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                )}
+
+                {/* Career Opportunities Card */}
+                {courseData.careerOpportunities && courseData.careerOpportunities.length > 0 && (
                   <Card className="shadow-lg border border-border bg-card/90 backdrop-blur-sm">
                     <CardHeader className="bg-card p-6">
                       <CardTitle className="text-foreground flex items-center gap-2">
@@ -178,7 +198,8 @@ export default function CourseDetailsPage() {
                     </CardContent>
                   </Card>
                 )}
-                <br/>
+            </div>
+
             <div className="grid gap-8 lg:grid-cols-3">
               {/* Main Content Column */}
               <div className="lg:col-span-2 space-y-8">
@@ -278,29 +299,6 @@ export default function CourseDetailsPage() {
                     </CardContent>
                   </Card>
                 )}
-
-                {/* Skills You'll Get */}
-                {courseData.skillsGained && courseData.skillsGained.length > 0 && (
-                  <Card className="shadow-lg border border-border bg-card/90 backdrop-blur-sm">
-                    <CardHeader className="bg-card p-6">
-                      <CardTitle className="text-foreground flex items-center gap-2">
-                        <Code className="h-5 w-5 text-muted-foreground" />
-                        Skills You'll Get
-                      </CardTitle>
-                    </CardHeader>
-                    <CardContent className="p-6">
-                      <div className="flex flex-wrap gap-2">
-                        {courseData.skillsGained.map((skill: string, index: number) => (
-                          <Badge key={index} variant="secondary" className="bg-muted text-foreground border border-input px-3 py-1 text-sm rounded-md shadow-sm">
-                            {skill}
-                          </Badge>
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                )}
-
-                
               </div>
 
               {/* Sidebar Column */}

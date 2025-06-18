@@ -23,6 +23,17 @@ export const courseDetailsData = [
       "Conduct <strong>user testing</strong> to gather feedback and refine design concepts.",
       "Apply Design Thinking to <strong>real-world challenges</strong> in business, technology, and social innovation.",
     ],
+    skillsGained: [ // NEW FIELD
+      "Human-Centered Design",
+      "Problem Framing",
+      "Ideation Techniques",
+      "Rapid Prototyping",
+      "User Research",
+      "Design Sprints",
+      "Feedback Integration",
+      "Innovation Strategy",
+      "User Experience (UX)",
+    ],
     careerOpportunities: [
       "UX Designer",
       "Product Manager",
@@ -110,6 +121,16 @@ export const courseDetailsData = [
       "Analyze <strong>key security concerns and solutions</strong> in cloud environments.",
       "Grasp concepts of <strong>cloud storage, networking, and resource management</strong>.",
     ],
+    skillsGained: [ // NEW FIELD
+      "Cloud Architecture",
+      "Virtualization",
+      "Cloud Security",
+      "AWS/Azure/GCP Basics", // Assuming some basic exposure
+      "Resource Management",
+      "Scalability",
+      "Network Configuration (Cloud)",
+      "Containerization (Optional, but related)",
+    ],
     careerOpportunities: [
       "Cloud Engineer",
       "Cloud Architect",
@@ -159,7 +180,7 @@ export const courseDetailsData = [
       }
     ],
     summary:
-      "<strong>Summary:</strong> Cloud Computing revolutionizes how computing resources are delivered and consumed, offering unprecedented scalability and flexibility. This course provides a deep dive into <strong>cloud service models (IaaS, PaaS, SaaS), deployment strategies, virtualization, and critical cloud security considerations</strong>, equipping you with foundational knowledge for the cloud era.\n\n<strong>What You'll Learn:</strong>\n* The fundamental principles and economic benefits of cloud computing.\n* Detailed understanding of different cloud service and deployment models.\n* How virtualization enables the cloud's elastic infrastructure.\n* Key security challenges and best practices for securing data and applications in the cloud.\n* Insights into cloud resource management and monitoring.\n\n<strong>Why This Course Matters:</strong> Cloud computing is no longer a niche technology but a dominant force in IT, driving digital transformation across all industries. Mastering cloud concepts opens doors to numerous high-demand roles and ensures you're prepared for the future of enterprise IT.\n\n<strong>Who Should Take This Course:</strong> This course is ideal for computer science students, aspiring IT professionals, network engineers, system administrators, and anyone looking to specialize in cloud technologies or understand its impact on modern businesses.\n\n<strong>Where to Start:</strong> Begin by watching <strong>Unit 1: Introduction to Cloud Concepts & Models</strong> on our YouTube playlist. It provides the essential vocabulary and foundational understanding needed to progress through the course effectively.",
+      "<strong>Summary:</strong> Cloud Computing revolutionizes how computing resources are delivered and consumed, offering unprecedented scalability and flexibility. This course provides a deep dive into <strong>cloud service models (IaaS, PaaS, SaaS), deployment strategies, virtualization, and critical cloud security considerations</strong>, equipping you with foundational knowledge for the cloud era.\n\n<strong>What You'll Learn:</strong>\n* The <strong>fundamental principles and economic benefits</strong> of cloud computing.\n* <strong>Detailed understanding of different cloud service and deployment models</strong>.\n* How <strong>virtualization enables the cloud's elastic infrastructure</strong>.\n* <strong>Key security challenges and best practices</strong> for securing data and applications in the cloud.\n* <strong>Insights into cloud resource management and monitoring</strong>.\n\n<strong>Why This Course Matters:</strong> Cloud computing is no longer a niche technology but a dominant force in IT, driving digital transformation across all industries. Mastering cloud concepts opens doors to numerous high-demand roles and ensures you're prepared for the future of enterprise IT.\n\n<strong>Who Should Take This Course:</strong> This course is ideal for computer science students, aspiring IT professionals, network engineers, system administrators, and anyone looking to specialize in cloud technologies or understand its impact on modern businesses.\n\n<strong>Where to Start:</strong> Begin by watching <strong>Unit 1: Introduction to Cloud Concepts & Models</strong> on our YouTube playlist. It provides the essential vocabulary and foundational understanding needed to progress through the course effectively.",
     examInfo: {
       aktuLink: "https://aktu.ac.in/examination.html",
       examPattern: "Theory: 70 marks, Internal: 30 marks",
@@ -196,6 +217,16 @@ export const courseDetailsData = [
       "Learn effective <strong>test planning, execution, and defect reporting</strong> processes.",
       "Explore <strong>test automation frameworks and tools</strong> for efficient testing.",
       "Develop skills to ensure <strong>high-quality software delivery</strong> throughout the SDLC.",
+    ],
+    skillsGained: [ // NEW FIELD
+      "Test Case Design",
+      "Defect Management",
+      "Test Automation",
+      "Manual Testing",
+      "Regression Testing",
+      "Performance Testing",
+      "Security Testing",
+      "Software Quality Assurance (SQA)",
     ],
     careerOpportunities: [
       "Software Tester / QA Engineer",
@@ -283,6 +314,16 @@ export const courseDetailsData = [
       "Grasp the <strong>fundamentals of search engine optimization (SEO)</strong> and its importance.",
       "Learn about <strong>different types of digital advertising and campaign management</strong>.",
       "Utilize <strong>analytics tools to measure and optimize marketing campaign performance</strong>.",
+    ],
+    skillsGained: [ // NEW FIELD
+      "Content Strategy",
+      "Social Media Management",
+      "SEO (Search Engine Optimization)",
+      "SEM (Search Engine Marketing)",
+      "Campaign Management",
+      "Digital Analytics",
+      "Brand Storytelling",
+      "Audience Targeting",
     ],
     careerOpportunities: [
       "Social Media Manager",
