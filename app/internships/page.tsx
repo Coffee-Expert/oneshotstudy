@@ -414,7 +414,7 @@ export default function InternshipsPage() {
                             >
                               <Link href={`/internships/${internship.id}`}>
                                 <div className="flex items-center">
-                                  <Eye className="mr-2 h-4 w-4" />
+                                  <Eye className="mr-2 mb-2 h-4 w-4" />
                                   Click to Know More
                                 </div>
                               </Link>
