@@ -48,7 +48,7 @@ const AKTU_RESOURCES = [
     title: "Exam Updates",
     description: "Stay informed with the latest notifications and schedules from AKTU.",
     icon: Calendar,
-    link: "https://aktu.ac.in/examination.html"
+    link: "/alerts"
   },
   {
     title: "Handwritten Notes",
