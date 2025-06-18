@@ -281,7 +281,7 @@ export default function Home() {
               </svg>
             </h2>
             <p className="text-muted-foreground sm:text-lg">
-              Don't miss out on valuable experience. Browse the latest opportunities!
+              Don&apos;t miss out on valuable experience. Browse the latest opportunities!
             </p>
           </div>
 
