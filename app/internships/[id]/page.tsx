@@ -73,7 +73,7 @@ export default function InternshipDetailsPage() {
       setLoading(true)
       try {
         // Corrected Edge Function name to getintdet
-        const res = await fetch(`https://gtxhtlpbwgmvljzsezfm.functions.supabase.co/getintid?${id}`, {
+        const res = await fetch(`https://gtxhtlpbwgmvljzsezfm.functions.supabase.co/getintid?id=${id}`, {
           cache: "no-store", // Ensure fresh data on each visit
         })
         if (!res.ok) {
