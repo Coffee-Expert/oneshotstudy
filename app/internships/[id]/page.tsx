@@ -73,9 +73,8 @@ export default function InternshipDetailsPage() {
     const fetchInternshipDetails = async () => {
       setLoading(true)
       try {
-        // Corrected Edge Function name and path
+        // Keeping the exact fetch URL as requested
         const res = await fetch(`https://gtxhtlpbwgmvljzsezfm.functions.supabase.co/getintid?id=${id}`, {
-          
           cache: "no-store", // Ensure fresh data on each visit
         })
         if (!res.ok) {
@@ -182,62 +181,93 @@ export default function InternshipDetailsPage() {
           </Button>
 
           {/* Hero Section - Full width at the top */}
-          <Card className="p-6 md:p-8 mb-8 border border-border shadow-lg bg-card flex flex-col md:flex-row items-center md:items-start gap-6">
-            {internshipData.companyLogo && (
-              <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0 rounded-lg overflow-hidden border border-input bg-background p-2 shadow-sm">
-                <Image
-                  src={internshipData.companyLogo}
-                  alt={`${internshipData.companyName} logo`}
-                  layout="fill"
-                  objectFit="contain"
-                  onError={(e) => {
-                    // Fallback to a placeholder or hide if image fails
-                    e.currentTarget.src = `https://placehold.co/128x128/e0e0e0/555555?text=${internshipData.companyName ? internshipData.companyName.charAt(0) : '?'}`;
-                    e.currentTarget.onerror = null; // Prevent infinite loop
-                  }}
-                />
-              </div>
-            )}
-            <div className="flex-grow text-center md:text-left">
-              <h1 className="text-3xl md:text-5xl font-extrabold text-foreground leading-tight mb-2">
-                {internshipData.title}
-              </h1>
-              <p className="text-xl md:text-3xl font-semibold text-muted-foreground">
-                {internshipData.companyName || "Company Name N/A"}
-              </p>
-              {internshipData.website && (
-                <Link href={internshipData.website} target="_blank" rel="noopener noreferrer">
-                  <Button variant="link" className="p-0 h-auto text-primary hover:text-primary/80 mt-3">
-                    Visit Company Website <LinkIcon className="ml-2 h-4 w-4" />
-                  </Button>
-                </Link>
+          <Card className="p-6 md:p-8 mb-8 border border-border shadow-lg bg-card flex flex-col items-center"> {/* Centered content */}
+            <div className="flex flex-col md:flex-row items-center md:items-start gap-6 w-full">
+              {internshipData.companyLogo && (
+                <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0 rounded-lg overflow-hidden border border-input bg-background p-2 shadow-sm">
+                  <Image
+                    src={internshipData.companyLogo}
+                    alt={`${internshipData.companyName} logo`}
+                    layout="fill"
+                    objectFit="contain"
+                    onError={(e) => {
+                      // Fallback to a placeholder or hide if image fails
+                      e.currentTarget.src = `https://placehold.co/128x128/e0e0e0/555555?text=${internshipData.companyName ? internshipData.companyName.charAt(0) : '?'}`;
+                      e.currentTarget.onerror = null; // Prevent infinite loop
+                    }}
+                  />
+                </div>
               )}
+              <div className="flex-grow text-center md:text-left">
+                <h1 className="text-3xl md:text-5xl font-extrabold text-foreground leading-tight mb-2">
+                  {internshipData.title}
+                </h1>
+                <p className="text-xl md:text-3xl font-semibold text-muted-foreground flex items-center justify-center md:justify-start gap-2">
+                  {internshipData.companyName || "Company Name N/A"}
+                  {internshipData.jobType && (
+                    <Badge className="bg-primary text-primary-foreground text-base py-1 px-3 rounded-full ml-2">
+                      {internshipData.jobType}
+                    </Badge>
+                  )}
+                </p>
+                {internshipData.website && (
+                  <Link href={internshipData.website} target="_blank" rel="noopener noreferrer">
+                    <Button variant="link" className="p-0 h-auto text-primary hover:text-primary/80 mt-3 text-base">
+                      Visit Company Website <LinkIcon className="ml-2 h-4 w-4" />
+                    </Button>
+                  </Link>
+                )}
+              </div>
+            </div>
 
-              {/* Key Details Grid in Hero */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-3 gap-x-8 text-sm md:text-base text-foreground mt-6 pt-4 border-t border-border/70">
-                <div className="flex items-center gap-3">
-                  <MapPin className="h-5 w-5 text-primary" />
-                  <span>{internshipData.location || "Not Specified"}</span>
+            {/* Additional Details Grid - mimicking the image's key-value pair display */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-8 text-base text-foreground mt-8 pt-6 border-t border-border/70 w-full">
+              {/* Location */}
+              <div className="flex items-center gap-3">
+                <MapPin className="h-5 w-5 text-primary" />
+                <div>
+                  <span className="font-medium text-muted-foreground">Work Location</span>
+                  <p className="text-foreground">{internshipData.location || "Not Specified"}</p>
                 </div>
-                <div className="flex items-center gap-3">
-                  <Briefcase className="h-5 w-5 text-primary" />
-                  <span>Type: {internshipData.jobType || "Internship"}</span>
+              </div>
+              {/* Duration */}
+              <div className="flex items-center gap-3">
+                <Calendar className="h-5 w-5 text-primary" />
+                <div>
+                  <span className="font-medium text-muted-foreground">Duration</span>
+                  <p className="text-foreground">{internshipData.duration || "N/A"}</p>
                 </div>
-                <div className="flex items-center gap-3">
-                  <DollarSign className="h-5 w-5 text-primary" />
-                  <span>Stipend: {internshipData.salaryStipend || "Unpaid"}</span>
+              </div>
+              {/* Apply by */}
+              <div className="flex items-center gap-3">
+                <Clock className="h-5 w-5 text-primary" />
+                <div>
+                  <span className="font-medium text-muted-foreground">Apply by</span>
+                  <p className="text-foreground">{formattedDeadline}</p>
                 </div>
-                <div className="flex items-center gap-3">
-                  <Calendar className="h-5 w-5 text-primary" />
-                  <span>Duration: {internshipData.duration || "N/A"}</span>
+              </div>
+              {/* Stipend */}
+              <div className="flex items-center gap-3">
+                <DollarSign className="h-5 w-5 text-primary" />
+                <div>
+                  <span className="font-medium text-muted-foreground">Salary / Stipend</span>
+                  <p className="text-foreground">{internshipData.salaryStipend || "Unpaid"}</p>
                 </div>
-                <div className="flex items-center gap-3">
-                  <GraduationCap className="h-5 w-5 text-primary" />
-                  <span>Batch: {internshipData.batch || "Any"}</span>
+              </div>
+              {/* Batch */}
+              <div className="flex items-center gap-3">
+                <GraduationCap className="h-5 w-5 text-primary" />
+                <div>
+                  <span className="font-medium text-muted-foreground">Batch</span>
+                  <p className="text-foreground">{internshipData.batch || "Any"}</p>
                 </div>
-                <div className="flex items-center gap-3">
-                  <Clock className="h-5 w-5 text-primary" />
-                  <span>Apply by: {formattedDeadline}</span>
+              </div>
+              {/* Stream Required */}
+              <div className="flex items-center gap-3">
+                <Lightbulb className="h-5 w-5 text-primary" />
+                <div>
+                  <span className="font-medium text-muted-foreground">Stream Required</span>
+                  <p className="text-foreground">{internshipData.streamRequired || "Any"}</p>
                 </div>
               </div>
             </div>
@@ -252,36 +282,15 @@ export default function InternshipDetailsPage() {
               {internshipData.description && (
                 <Card className="border border-border shadow-sm bg-card">
                   <CardHeader>
-                    <CardTitle className="text-2xl text-foreground">About the Internship</CardTitle>
+                    <CardTitle className="text-2xl text-foreground">Job Description</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="prose max-w-none text-muted-foreground leading-relaxed">
                       {/* Using dangerouslySetInnerHTML if description contains HTML/rich text, otherwise just render as text */}
+                      {/* For raw text, <p>{internshipData.description}</p> is sufficient. If it contains newlines for paragraphs,
+                          you might want to split by newline and map to <p> tags for better rendering. */}
                       <p>{internshipData.description}</p>
                     </div>
-                  </CardContent>
-                </Card>
-              )}
-
-              {/* Eligibility & Requirements */}
-              {(internshipData.streamRequired || internshipData.batch) && (
-                <Card className="border border-border shadow-sm bg-card">
-                  <CardHeader>
-                    <CardTitle className="text-2xl text-foreground">Eligibility & Requirements</CardTitle>
-                  </CardHeader>
-                  <CardContent className="text-muted-foreground space-y-3">
-                    {internshipData.streamRequired && (
-                      <p className="flex items-center gap-3 text-lg">
-                        <Lightbulb className="h-5 w-5 text-primary flex-shrink-0" />
-                        <span className="font-medium text-foreground">Stream Required:</span> {internshipData.streamRequired}
-                      </p>
-                    )}
-                    {internshipData.batch && (
-                      <p className="flex items-center gap-3 text-lg">
-                        <GraduationCap className="h-5 w-5 text-primary flex-shrink-0" />
-                        <span className="font-medium text-foreground">Target Batch:</span> {internshipData.batch}
-                      </p>
-                    )}
                   </CardContent>
                 </Card>
               )}
@@ -342,7 +351,7 @@ export default function InternshipDetailsPage() {
                 </Card>
               )}
 
-              {/* Mid-Content AdSense Block */}
+              {/* Mid-Content AdSense Block - Kept commented out as per previous preference */}
               {/* <div className="py-4">
                 <ins
                   className="adsbygoogle"
@@ -394,7 +403,7 @@ export default function InternshipDetailsPage() {
                 </CardContent>
               </Card>
 
-              {/* Sidebar AdSense Block */}
+              {/* Sidebar AdSense Block - Kept commented out as per previous preference */}
               {/* <Card className="border border-border shadow-sm bg-card">
                 <CardHeader>
                   <CardTitle className="text-lg text-foreground">Sponsored</CardTitle>
