@@ -4,9 +4,9 @@ import Image from "next/image";
 import { useEffect, useState } from "react"
 import { useParams, useRouter } from "next/navigation"
 import {
-  ArrowLeft, MapPin, Calendar, Clock, Building, Users, 
+  ArrowLeft, MapPin, Calendar, Clock, Users,
   DollarSign, ExternalLink, GraduationCap, Briefcase, ListChecks,
-  Gift, Lightbulb, Link as LinkIcon // Renamed Link to LinkIcon to avoid conflict
+  Gift, Lightbulb, Link as LinkIcon, Building // Building icon explicitly imported
 } from "lucide-react"
 import { motion } from "framer-motion"
 import Link from "next/link"
@@ -17,6 +17,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { LoadingSpinner } from "@/components/loading-spinner"
+import { toast } from "@/hooks/use-toast"; // Assuming use-toast is properly configured
 
 // Define the InternshipData interface based on your schema
 interface InternshipData {
@@ -72,15 +73,16 @@ export default function InternshipDetailsPage() {
     const fetchInternshipDetails = async () => {
       setLoading(true)
       try {
-        // Corrected Edge Function name to getintdet
-        const res = await fetch(`https://gtxhtlpbwgmvljzsezfm.functions.supabase.co/getintid?id=${id}`, {
+        // Corrected Edge Function name and path
+        const res = await fetch(`https://gtxhtlpbwgmvljzsezfm.supabase.co/functions/v1/getintdet?id=${id}`, {
           cache: "no-store", // Ensure fresh data on each visit
         })
         if (!res.ok) {
           if (res.status === 404) {
             setInternshipData(null); // Explicitly set to null if not found
           }
-          throw new Error(`Failed to fetch internship details: ${res.statusText}`);
+          const errorText = await res.text();
+          throw new Error(`Failed to fetch internship details: ${res.statusText} - ${errorText}`);
         }
 
         const data: InternshipData = await res.json()
@@ -106,7 +108,14 @@ export default function InternshipDetailsPage() {
         returnPath: `/internships/${id}`, // Return to this page
       }));
       router.push("/download-page");
-    } 
+    } else {
+      toast({
+        title: "Application link not available",
+        description: "This internship does not have an external application link provided.",
+        variant: "destructive",
+      });
+      console.warn("Missing application link (website field), cannot redirect.")
+    }
   }
 
   // Format the application deadline
@@ -163,6 +172,7 @@ export default function InternshipDetailsPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
+          {/* Back button */}
           <Button variant="ghost" asChild className="mb-8 text-muted-foreground hover:text-foreground hover:bg-muted">
             <Link href="/internships">
               <ArrowLeft className="mr-2 h-4 w-4" />
@@ -170,119 +180,121 @@ export default function InternshipDetailsPage() {
             </Link>
           </Button>
 
-          {/* Hero Section */}
-          <Card className="p-6 md:p-8 mb-8 border border-border shadow-lg bg-card">
-            <CardHeader className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 p-0 mb-6">
-              <div className="flex items-center gap-6">
-                {internshipData.companyLogo && (
-                  <div className="relative w-20 h-20 md:w-24 md:h-24 flex-shrink-0 rounded-lg overflow-hidden border border-input bg-background p-1">
-                    <Image
-                      src={internshipData.companyLogo}
-                      alt={`${internshipData.companyName} logo`}
-                      layout="fill"
-                      objectFit="contain"
-                      className="p-1" // Add padding to image inside div
-                      onError={(e) => {
-                        // fallback in case logo doesn't load
-                        e.currentTarget.style.display = "none"
-                      }}
-                    />
-                  </div>
-                )}
-                <div>
-                  <h1 className="text-3xl md:text-4xl font-extrabold text-foreground leading-tight">
-                    {internshipData.title}
-                  </h1>
-                  <p className="text-xl md:text-2xl font-semibold text-muted-foreground mt-1">
-                    {internshipData.companyName}
-                  </p>
-                  {internshipData.website && (
-                    <Link href={internshipData.website} target="_blank" rel="noopener noreferrer">
-                      <Button variant="link" className="p-0 h-auto text-primary hover:text-primary/80 mt-2">
-                        Visit Company Website <LinkIcon className="ml-1 h-4 w-4" />
-                      </Button>
-                    </Link>
-                  )}
+          {/* Hero Section - Full width at the top */}
+          <Card className="p-6 md:p-8 mb-8 border border-border shadow-lg bg-card flex flex-col md:flex-row items-center md:items-start gap-6">
+            {internshipData.companyLogo && (
+              <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0 rounded-lg overflow-hidden border border-input bg-background p-2 shadow-sm">
+                <Image
+                  src={internshipData.companyLogo}
+                  alt={`${internshipData.companyName} logo`}
+                  layout="fill"
+                  objectFit="contain"
+                  onError={(e) => {
+                    // Fallback to a placeholder or hide if image fails
+                    e.currentTarget.src = `https://placehold.co/128x128/e0e0e0/555555?text=${internshipData.companyName ? internshipData.companyName.charAt(0) : '?'}`;
+                    e.currentTarget.onerror = null; // Prevent infinite loop
+                  }}
+                />
+              </div>
+            )}
+            <div className="flex-grow text-center md:text-left">
+              <h1 className="text-3xl md:text-5xl font-extrabold text-foreground leading-tight mb-2">
+                {internshipData.title}
+              </h1>
+              <p className="text-xl md:text-3xl font-semibold text-muted-foreground">
+                {internshipData.companyName || "Company Name N/A"}
+              </p>
+              {internshipData.website && (
+                <Link href={internshipData.website} target="_blank" rel="noopener noreferrer">
+                  <Button variant="link" className="p-0 h-auto text-primary hover:text-primary/80 mt-3">
+                    Visit Company Website <LinkIcon className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              )}
+
+              {/* Key Details Grid in Hero */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-3 gap-x-8 text-sm md:text-base text-foreground mt-6 pt-4 border-t border-border/70">
+                <div className="flex items-center gap-3">
+                  <MapPin className="h-5 w-5 text-primary" />
+                  <span>{internshipData.location || "Not Specified"}</span>
                 </div>
+                <div className="flex items-center gap-3">
+                  <Briefcase className="h-5 w-5 text-primary" />
+                  <span>Type: {internshipData.jobType || "Internship"}</span>
                 </div>
-            </CardHeader>
-            <CardContent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-8 text-sm md:text-base text-foreground p-0 pt-4 border-t border-border/70">
-              <div className="flex items-center gap-2">
-                <MapPin className="h-5 w-5 text-primary" />
-                <span>{internshipData.location || "Not Specified"}</span>
+                <div className="flex items-center gap-3">
+                  <DollarSign className="h-5 w-5 text-primary" />
+                  <span>Stipend: {internshipData.salaryStipend || "Unpaid"}</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Calendar className="h-5 w-5 text-primary" />
+                  <span>Duration: {internshipData.duration || "N/A"}</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <GraduationCap className="h-5 w-5 text-primary" />
+                  <span>Batch: {internshipData.batch || "Any"}</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Clock className="h-5 w-5 text-primary" />
+                  <span>Apply by: {formattedDeadline}</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <Calendar className="h-5 w-5 text-primary" />
-                <span>Duration: {internshipData.duration || "N/A"}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock className="h-5 w-5 text-primary" />
-                <span>Apply by: {formattedDeadline}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <DollarSign className="h-5 w-5 text-primary" />
-                <span>Stipend: {internshipData.salaryStipend || "Unpaid"}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Briefcase className="h-5 w-5 text-primary" />
-                <span>Type: {internshipData.jobType || "Internship"}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <GraduationCap className="h-5 w-5 text-primary" />
-                <span>Batch: {internshipData.batch || "Any"}</span>
-              </div>
-            </CardContent>
+            </div>
           </Card>
 
+          {/* Main Content and Sidebar Layout */}
           <div className="grid gap-8 lg:grid-cols-3">
-            {/* Main content area */}
+            {/* Main content area (left 2/3) */}
             <div className="lg:col-span-2 space-y-8">
 
               {/* Description */}
               {internshipData.description && (
                 <Card className="border border-border shadow-sm bg-card">
                   <CardHeader>
-                    <CardTitle className="text-xl text-foreground">About the Internship</CardTitle>
+                    <CardTitle className="text-2xl text-foreground">About the Internship</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <div className="prose prose-sm max-w-none text-muted-foreground">
-                      {/* You might want to parse Markdown if description contains it */}
+                    <div className="prose max-w-none text-muted-foreground leading-relaxed">
+                      {/* Using dangerouslySetInnerHTML if description contains HTML/rich text, otherwise just render as text */}
                       <p>{internshipData.description}</p>
                     </div>
                   </CardContent>
                 </Card>
               )}
 
-              {/* Eligibility */}
+              {/* Eligibility & Requirements */}
               {(internshipData.streamRequired || internshipData.batch) && (
                 <Card className="border border-border shadow-sm bg-card">
                   <CardHeader>
-                    <CardTitle className="text-xl text-foreground">Eligibility & Requirements</CardTitle>
+                    <CardTitle className="text-2xl text-foreground">Eligibility & Requirements</CardTitle>
                   </CardHeader>
-                  <CardContent className="text-muted-foreground space-y-2">
+                  <CardContent className="text-muted-foreground space-y-3">
                     {internshipData.streamRequired && (
-                      <p className="flex items-center gap-2"><Lightbulb className="h-4 w-4 text-primary" />
-                      <span className="font-medium text-foreground">Stream Required:</span> {internshipData.streamRequired}</p>
+                      <p className="flex items-center gap-3 text-lg">
+                        <Lightbulb className="h-5 w-5 text-primary flex-shrink-0" />
+                        <span className="font-medium text-foreground">Stream Required:</span> {internshipData.streamRequired}
+                      </p>
                     )}
                     {internshipData.batch && (
-                      <p className="flex items-center gap-2"><GraduationCap className="h-4 w-4 text-primary" />
-                      <span className="font-medium text-foreground">Target Batch:</span> {internshipData.batch}</p>
+                      <p className="flex items-center gap-3 text-lg">
+                        <GraduationCap className="h-5 w-5 text-primary flex-shrink-0" />
+                        <span className="font-medium text-foreground">Target Batch:</span> {internshipData.batch}
+                      </p>
                     )}
                   </CardContent>
                 </Card>
               )}
 
-
               {/* Skills */}
               {internshipData.skills && internshipData.skills.length > 0 && (
                 <Card className="border border-border shadow-sm bg-card">
                   <CardHeader>
-                    <CardTitle className="text-xl text-foreground">Skills Required</CardTitle>
+                    <CardTitle className="text-2xl text-foreground">Skills Required</CardTitle>
                   </CardHeader>
                   <CardContent>
                     <div className="flex flex-wrap gap-3">
                       {internshipData.skills.map((skill: string, index: number) => (
-                        <Badge key={index} variant="secondary" className="text-foreground border border-input py-1 px-3">
+                        <Badge key={index} variant="secondary" className="text-foreground border border-input text-base py-2 px-4 rounded-md">
                           {skill}
                         </Badge>
                       ))}
@@ -295,12 +307,12 @@ export default function InternshipDetailsPage() {
               {internshipData.perks && internshipData.perks.length > 0 && (
                 <Card className="border border-border shadow-sm bg-card">
                   <CardHeader>
-                    <CardTitle className="text-xl text-foreground">Perks & Benefits</CardTitle>
+                    <CardTitle className="text-2xl text-foreground">Perks & Benefits</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <ul className="space-y-2 text-muted-foreground">
+                    <ul className="space-y-3 text-muted-foreground">
                       {internshipData.perks.map((perk: string, index: number) => (
-                        <li key={index} className="flex items-start gap-2">
+                        <li key={index} className="flex items-start gap-3 text-lg">
                           <Gift className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
                           <span>{perk}</span>
                         </li>
@@ -314,12 +326,12 @@ export default function InternshipDetailsPage() {
               {internshipData.interviewRounds && internshipData.interviewRounds.length > 0 && (
                 <Card className="border border-border shadow-sm bg-card">
                   <CardHeader>
-                    <CardTitle className="text-xl text-foreground">Interview Process</CardTitle>
+                    <CardTitle className="text-2xl text-foreground">Interview Process</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <ul className="space-y-2 text-muted-foreground">
+                    <ul className="space-y-3 text-muted-foreground">
                       {internshipData.interviewRounds.map((round: string, index: number) => (
-                        <li key={index} className="flex items-start gap-2">
+                        <li key={index} className="flex items-start gap-3 text-lg">
                           <ListChecks className="h-5 w-5 text-primary flex-shrink-0 mt-1" />
                           <span>{round}</span>
                         </li>
@@ -329,11 +341,11 @@ export default function InternshipDetailsPage() {
                 </Card>
               )}
 
-              {/* Optional Ad: Mid-Content AdSense */}
+              {/* Mid-Content AdSense Block */}
               {/* <div className="py-4">
                 <ins
                   className="adsbygoogle"
-                  style={{ display: "block" }}
+                  style={{ display: "block", width: '100%', minHeight: '100px' }}
                   data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
                   data-ad-slot="XXXXXXXXXX"
                   data-ad-format="fluid"
@@ -344,34 +356,34 @@ export default function InternshipDetailsPage() {
 
             </div>
 
-            {/* Sidebar */}
-            <div className="lg:col-span-1 space-y-6"> {/* Added space-y for consistent spacing */}
+            {/* Sidebar (right 1/3) */}
+            <div className="lg:col-span-1 space-y-6">
               <Card className="sticky top-24 border border-border shadow-md bg-card">
                 <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-xl text-foreground">
-                    <Users className="h-5 w-5 text-primary" />
+                  <CardTitle className="flex items-center gap-2 text-2xl text-foreground">
+                    <Users className="h-6 w-6 text-primary" />
                     Apply for Internship
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4 pt-4 border-t border-border/70">
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center text-foreground">
+                <CardContent className="space-y-5 pt-5 border-t border-border/70">
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center text-foreground text-lg">
                       <span>Deadline:</span>
                       <span className="font-semibold text-primary">{formattedDeadline}</span>
                     </div>
-                    <div className="flex justify-between items-center text-foreground">
+                    <div className="flex justify-between items-center text-foreground text-lg">
                       <span>Duration:</span>
                       <span className="font-semibold text-primary">{internshipData.duration || "N/A"}</span>
                     </div>
                   </div>
 
-                  <div className="pt-4 border-t border-border/70">
+                  <div className="pt-5 border-t border-border/70">
                     <Button
                       onClick={handleApplyClick}
-                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground flex items-center justify-center gap-2 shadow-lg hover:shadow-xl"
+                      className="w-full bg-primary hover:bg-primary/90 text-primary-foreground flex items-center justify-center gap-2 shadow-lg hover:shadow-xl text-lg py-3"
                       size="lg"
                     >
-                      <ExternalLink className="h-5 w-5" />
+                      <ExternalLink className="h-6 w-6" />
                       APPLY NOW
                     </Button>
                     <p className="text-xs text-muted-foreground mt-3 text-center">
@@ -382,21 +394,21 @@ export default function InternshipDetailsPage() {
               </Card>
 
               {/* Sidebar AdSense Block */}
-              <Card className="border border-border shadow-sm bg-card">
+              {/* <Card className="border border-border shadow-sm bg-card">
                 <CardHeader>
                   <CardTitle className="text-lg text-foreground">Sponsored</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <ins
                     className="adsbygoogle"
-                    style={{ display: "block", width: '100%', height: '250px' }} // Added fixed size for placeholder
-                    data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" // Replace with your AdSense ID
-                    data-ad-slot="XXXXXXXXXX" // Replace with your ad slot
+                    style={{ display: "block", width: '100%', height: '250px' }}
+                    data-ad-client="ca-pub-XXXXXXXXXXXXXXXX"
+                    data-ad-slot="XXXXXXXXXX"
                     data-ad-format="auto"
                     data-full-width-responsive="true"
                   ></ins>
                 </CardContent>
-              </Card>
+              </Card> */}
             </div>
           </div>
         </motion.div>
