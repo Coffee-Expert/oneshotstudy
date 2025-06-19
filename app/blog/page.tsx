@@ -12,7 +12,6 @@ import { Badge } from "@/components/ui/badge"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { blogPostsData } from "@/data/blog-data"
-import { AspectRatio } from "@/components/ui/aspect-ratio"
 import { Skeleton } from "@/components/ui/skeleton"
 
 const container = {
@@ -142,12 +141,12 @@ export default function BlogPage() {
                   <Card className="overflow-hidden group">
                     <div className="md:flex">
                       <div className="md:w-1/2">
-                        <AspectRatio ratio={16/9}>
+                       
                           <div 
                             className="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
                             style={{ backgroundImage: `url(${filteredPosts[0].image})` }}
                           />
-                        </AspectRatio>
+                        
                       </div>
                       <div className="md:w-1/2 p-6 flex flex-col">
                         <div className="flex gap-2 mb-4">
@@ -274,12 +273,12 @@ export default function BlogPage() {
                     >
                       <Card className="h-full flex flex-col overflow-hidden group border-0 shadow-md hover:shadow-xl transition-all">
                         <div className="relative overflow-hidden">
-                          <AspectRatio ratio={16/9}>
+                         
                             <div 
                               className="w-full h-full bg-cover bg-center transition-transform duration-500 group-hover:scale-110"
                               style={{ backgroundImage: `url(${post.image})` }}
                             />
-                          </AspectRatio>
+                          
                           <div className="absolute top-4 right-4">
                             <Badge variant="outline" className="capitalize bg-background/80 backdrop-blur-sm">
                               {post.category.replace("-", " ")}
