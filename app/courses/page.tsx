@@ -277,7 +277,7 @@ export default function CoursesPage() {
                           <div className="relative">
                             <div className="bg-muted border-b aspect-video flex items-center justify-center">
                               <div className="bg-accent/10 p-4 rounded-full">
-                                <course.icon className="h-8 w-8 text-primary" />
+                                <course.icon />
                               </div>
                             </div>
                             <Badge 
