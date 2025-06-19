@@ -4,79 +4,81 @@
 
 @layer base {
   :root {
-    /* === Luxurious Warm Theme === */
+    /* === Trust & Focus Theme === */
+    --background: 210 40% 98%;          /* Light sky blue (#F0F7FF) */
+    --foreground: 220 40% 18%;          /* Deep navy (#0A192F) */
 
-    --background: 30 20% 12%;             /* Warm deep brown-black */
-    --foreground: 30 25% 88%;             /* Creamy warm beige */
+    --card: 210 35% 95%;                /* Slightly off-white */
+    --card-foreground: 220 40% 18%;
 
-    --card: 30 20% 16%;                   /* Slightly lighter than background */
-    --card-foreground: 30 25% 90%;
+    --popover: 210 30% 92%;             
+    --popover-foreground: 220 40% 18%;
 
-    --popover: 30 20% 20%;
-    --popover-foreground: 30 25% 90%;
+    --primary: 220 50% 35%;             /* Trusted navy (#1D3557) */
+    --primary-foreground: 210 40% 98%;
 
-    --primary: 40 80% 55%;                /* Rich amber gold */
-    --primary-foreground: 30 20% 10%;     /* Dark brown text */
+    --secondary: 190 60% 80%;           /* Soft sky blue (#A8DADC) */
+    --secondary-foreground: 220 40% 18%;
 
-    --secondary: 20 30% 25%;              /* Deep muted chocolate */
-    --secondary-foreground: 30 25% 85%;   /* Soft cream */
+    --muted: 210 25% 90%;               /* Very light blue */
+    --muted-foreground: 220 20% 40%;
 
-    --muted: 30 10% 28%;
-    --muted-foreground: 30 10% 60%;
-
-    --accent: 40 90% 60%;                 /* Brighter gold for hovers */
-    --accent-foreground: 30 20% 10%;
+    --accent: 170 70% 45%;              /* Vibrant teal (#2A9D8F) */
+    --accent-foreground: 210 40% 98%;
 
     --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 30 10% 35%;
-    --input: 30 10% 20%;
-    --ring: 40 80% 55%;
+    --border: 210 30% 85%;              /* Light blue border */
+    --input: 210 30% 92%;               /* Off-white inputs */
+    --ring: 220 50% 35%;                /* Navy focus ring */
 
     --radius: 0.5rem;
 
-    --chart-1: 40 80% 55%;
-    --chart-2: 30 25% 45%;
-    --chart-3: 40 90% 60%;
-    --chart-4: 30 15% 65%;
-    --chart-5: 20 10% 40%;
+    /* Chart colors */
+    --chart-1: 220 50% 35%;             /* Navy */
+    --chart-2: 170 70% 45%;             /* Teal */
+    --chart-3: 190 60% 80%;             /* Sky blue */
+    --chart-4: 200 60% 60%;             /* Cerulean */
+    --chart-5: 220 30% 65%;             /* Periwinkle */
   }
 
   .dark {
-    --background: 30 20% 12%;
-    --foreground: 30 25% 88%;
+    /* Focused dark theme */
+    --background: 220 40% 10%;          /* Deep navy (#0A192F) */
+    --foreground: 210 40% 95%;          /* Soft blue-white */
 
-    --card: 30 20% 16%;
-    --card-foreground: 30 25% 90%;
+    --card: 220 35% 15%;                /* Darker navy card */
+    --card-foreground: 210 40% 95%;
 
-    --popover: 30 20% 20%;
-    --popover-foreground: 30 25% 90%;
+    --popover: 220 30% 18%;             
+    --popover-foreground: 210 40% 95%;
 
-    --primary: 40 80% 55%;
-    --primary-foreground: 30 20% 10%;
+    --primary: 190 60% 80%;             /* Sky blue as primary in dark mode */
+    --primary-foreground: 220 40% 10%;
 
-    --secondary: 20 30% 25%;
-    --secondary-foreground: 30 25% 85%;
+    --secondary: 170 70% 45%;           /* Teal secondary */
+    --secondary-foreground: 210 40% 95%;
 
-    --muted: 30 10% 28%;
-    --muted-foreground: 30 10% 60%;
+    --muted: 220 30% 22%;               /* Muted navy */
+    --muted-foreground: 210 30% 75%;
 
-    --accent: 40 90% 60%;
-    --accent-foreground: 30 20% 10%;
+    --accent: 200 80% 60%;              /* Bright cerulean */
+    --accent-foreground: 220 40% 10%;
 
-    --destructive: 0 70% 50%;
+    --destructive: 5 80% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 30 10% 35%;
-    --input: 30 10% 20%;
-    --ring: 40 80% 55%;
+    --border: 220 30% 25%;              /* Dark border */
+    --input: 220 35% 20%;               /* Deep input fields */
+    --ring: 190 60% 80%;                /* Sky blue focus ring */
 
-    --chart-1: 40 80% 55%;
-    --chart-2: 30 25% 45%;
-    --chart-3: 40 90% 60%;
-    --chart-4: 30 15% 65%;
-    --chart-5: 20 10% 40%;
+    /* Dark mode chart colors */
+    --chart-1: 190 60% 80%;             /* Sky blue */
+    --chart-2: 170 70% 45%;             /* Teal */
+    --chart-3: 200 80% 60%;             /* Cerulean */
+    --chart-4: 220 50% 40%;             /* Royal blue */
+    --chart-5: 220 30% 65%;             /* Periwinkle */
   }
 }
 
@@ -87,34 +89,39 @@
 
   body {
     @apply bg-background text-foreground;
+    background-image: 
+      linear-gradient(to bottom, 
+        hsl(var(--background)) 0%, 
+        hsl(var(--muted)) 100%);
   }
 }
 
 ::selection {
-  background-color: hsl(var(--primary));
-  color: hsl(var(--primary-foreground));
+  background-color: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
 }
 
 ::-moz-selection {
-  background-color: hsl(var(--primary));
-  color: hsl(var(--primary-foreground));
+  background-color: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
 }
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: hsl(var(--background));
+  background: hsl(var(--muted));
 }
 
 ::-webkit-scrollbar-thumb {
   background: hsl(var(--primary));
-  border-radius: 4px;
+  border-radius: var(--radius);
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -130,7 +137,12 @@ button,
 a,
 input,
 textarea {
-  transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease;
+}
+
+button:focus, 
+a:focus {
+  @apply ring-2 ring-ring ring-offset-2 ring-offset-background;
 }
 
 .container {
@@ -141,6 +153,7 @@ textarea {
   padding-right: 1rem;
 }
 
+/* Media queries */
 @media (min-width: 640px) {
   .container {
     max-width: 640px;
@@ -173,4 +186,29 @@ textarea {
   .container {
     max-width: 1536px;
   }
+}
+
+/* Modern blue-themed elements */
+.content-card {
+  @apply bg-card border border-border rounded-xl shadow-md;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.content-card:hover {
+  @apply shadow-lg;
+  transform: translateY(-2px);
+}
+
+/* Subtle wave pattern */
+body::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h100v100H0z' fill='none'/%3E%3Cpath d='M0 30 Q25 15, 50 30 T100 30 V70 Q75 85, 50 70 T0 70 Z' fill='%23000' fill-opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.2;
+  z-index: 100;
 }
