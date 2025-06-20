@@ -3,7 +3,6 @@ import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { Analytics } from '@vercel/analytics/next';
-
 import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/toaster"
 import { LenisScroll } from "@/components/lenis-scroll"

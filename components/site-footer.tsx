@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Mail, Phone } from "lucide-react"
+import { Mail, Phone, Send } from "lucide-react"
 
 export function SiteFooter() {
   return (
@@ -7,12 +7,62 @@ export function SiteFooter() {
       <div className="container relative z-10 flex flex-col gap-8 py-8 md:py-12">
         {/* Grid Sections */}
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
-          {/* Brand & Social */}
+          {/* Info Column */}
           <div className="flex flex-col gap-2">
-            <h3 className="text-lg font-medium text-foreground">One Shot Study</h3>
-            <p className="text-sm text-muted-foreground">
-              Your comprehensive study resource for B.Tech students.
-            </p>
+            <h3 className="text-lg font-medium text-foreground">Info</h3>
+            <ul className="flex flex-col gap-2 text-sm text-muted-foreground">
+              {[
+                { label: "Home", href: "/" },
+                { label: "About Us", href: "/about" },
+                { label: "Disclaimer", href: "/disclaimer" },
+                { label: "Privacy Policy", href: "/privacy-policy" },
+                { label: "Terms of service", href: "/terms" },
+                { label: "Contact us", href: "/contact" },
+              ].map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="hover:text-foreground transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* All Internships Column */}
+          <div className="flex flex-col gap-2">
+            <h3 className="text-lg font-medium text-foreground">All Internships</h3>
+            <ul className="flex flex-col gap-2 text-sm text-muted-foreground">
+              {[
+                "Software Engineer",
+                "Data Analyst",
+                "Web Development",
+                "Cyber Security",
+                "Sales & Marketing",
+              ].map((job) => (
+                <li key={job}>
+                  <Link 
+                    href="/internships" 
+                    className="hover:text-foreground transition-colors"
+                  >
+                    {job}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact Column */}
+          <div className="flex flex-col gap-2">
+            <h3 className="text-lg font-medium text-foreground">Contact</h3>
+            <p className="text-sm text-muted-foreground">Have questions or feedback?</p>
+            <Link
+              href="mailto:oneshotengineer@gmail.com"
+              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+            >
+              <Mail className="h-4 w-4" />
+              oneshotengineer@gmail.com
+            </Link>
+            
             <div className="flex gap-3 mt-2">
               {/* YouTube Icon */}
               <Link
@@ -37,64 +87,40 @@ export function SiteFooter() {
               >
                 <Phone className="h-5 w-5" />
               </Link>
+
+              {/* Mail Icon */}
+              <Link
+                href="mailto:oneshotengineer@gmail.com"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+                aria-label="Email"
+              >
+                <Mail className="h-5 w-5" />
+              </Link>
             </div>
           </div>
 
-          {/* Resources */}
-          <div className="flex flex-col gap-2">
-            <h3 className="text-lg font-medium text-foreground">Resources</h3>
-            <ul className="flex flex-col gap-2 text-sm text-muted-foreground">
-              {[
-                { label: "Courses", href: "/courses" },
-                { label: "Notes", href: "/notes" },
-                { label: "Internship Alerts", href: "/internships" },
-                { label: "AKTU Quantum PDFs", href: "/quantum" },
-                { label: "Important Alerts", href: "/alerts" },
-              ].map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="hover:text-foreground transition-colors">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Company */}
-          <div className="flex flex-col gap-2">
-            <h3 className="text-lg font-medium text-foreground">Company</h3>
-            <ul className="flex flex-col gap-2 text-sm text-muted-foreground">
-              {[
-                { label: "About Us", href: "/about" },
-                { label: "Contact", href: "/contact" },
-                { label: "Disclaimer", href: "/disclaimer" },
-                { label: "Privacy Policy", href: "/privacy-policy" },
-                { label: "Terms of Service", href: "/terms" },
-              ].map((link) => (
-                <li key={link.href}>
-                  <Link href={link.href} className="hover:text-foreground transition-colors">
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div className="flex flex-col gap-2">
-            <h3 className="text-lg font-medium text-foreground">Contact</h3>
-            <p className="text-sm text-muted-foreground">Have questions or feedback?</p>
-            <Link
-              href="mailto:oneshotengineer@gmail.com"
-              className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              <Mail className="h-4 w-4" />
-              oneshotengineer@gmail.com
-            </Link>
+          {/* Newsletter Column (Moved to the right) */}
+          <div className="flex flex-col gap-4">
+            <div>
+              <h3 className="text-lg font-medium text-foreground">Newsletter</h3>
+              <p className="mt-1 text-sm text-muted-foreground">
+                Subscribe to our newsletter for daily job updates, helpful tips.
+              </p>
+            </div>
+            
+            <div className="bg-muted rounded-lg p-4 border border-border">
+              <div className="flex items-center justify-center gap-2 text-muted-foreground">
+                <Send className="h-5 w-5" />
+                <span className="font-medium">Coming Soon</span>
+              </div>
+              <p className="mt-2 text-center text-sm">
+                We're working on something special!
+              </p>
+            </div>
           </div>
         </div>
 
-        {/* Bottom Footer Text */}
+        {/* Copyright and Bottom Text */}
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between text-sm">
           <p className="text-muted-foreground">
             &copy; {new Date().getFullYear()} One Shot Engineer. All rights reserved.
