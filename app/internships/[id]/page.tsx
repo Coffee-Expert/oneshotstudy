@@ -27,26 +27,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
 
 
-const [currentUrl, setCurrentUrl] = useState('');
-
-// Get current URL on client side
-useEffect(() => {
-  if (typeof window !== 'undefined') {
-    setCurrentUrl(window.location.href);
-  }
-}, []);
-
-const handleCopyLink = () => {
-  navigator.clipboard.writeText(currentUrl);
-  toast.success('Link copied to clipboard!');
-};
-
-const shareLinks = {
-  facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`,
-  twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(document.title)}`,
-  linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`,
-  instagram: 'https://instagram.com', // Instagram doesn't support direct URL sharing
-};
 
 
 
@@ -98,6 +78,27 @@ export default function InternshipDetailsPage() {
   const [loading, setLoading] = useState(true)
   const [expandedSection, setExpandedSection] = useState<string | null>(null)
   const [similarOpportunities, setSimilarOpportunities] = useState<any[]>([])
+  const [currentUrl, setCurrentUrl] = useState('');
+
+// Get current URL on client side
+useEffect(() => {
+  if (typeof window !== 'undefined') {
+    setCurrentUrl(window.location.href);
+  }
+}, []);
+
+const handleCopyLink = () => {
+  navigator.clipboard.writeText(currentUrl);
+  toast.success('Link copied to clipboard!');
+};
+
+const shareLinks = {
+  facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentUrl)}`,
+  twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(currentUrl)}&text=${encodeURIComponent(document.title)}`,
+  linkedin: `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(currentUrl)}`,
+  instagram: 'https://instagram.com', // Instagram doesn't support direct URL sharing
+};
+
 
   // Format the application deadline
   const formattedDeadline = internshipData?.applicationDeadline

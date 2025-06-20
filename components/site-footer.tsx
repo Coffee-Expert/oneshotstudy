@@ -114,7 +114,7 @@ export function SiteFooter() {
                 <span className="font-medium">Coming Soon</span>
               </div>
               <p className="mt-2 text-center text-sm">
-                We're working on something special!
+                We&apos;re working on something special!
               </p>
             </div>
           </div>
