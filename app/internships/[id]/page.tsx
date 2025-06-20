@@ -184,10 +184,7 @@ const shareLinks = {
     return (
       <div className="flex min-h-screen flex-col bg-background">
         <SiteHeader />
-        <Toaster
-  position="top-right"
-  reverseOrder={false}
-/>
+     
 
         <main className="flex-1 flex items-center justify-center">
           <div className="flex flex-col items-center gap-6">
@@ -228,6 +225,10 @@ const shareLinks = {
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <SiteHeader />
+      <Toaster
+  position="top-right"
+  reverseOrder={false}
+/>
       <main className="flex-1">
         {/* Banner with company color */}
         <div className="w-full h-64 bg-gradient-to-r from-blue-400/20 to-indigo-400/20 dark:from-blue-900/30 dark:to-indigo-900/30">
